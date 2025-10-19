@@ -1,0 +1,9 @@
+{
+  "pages": [
+    { "name": "Hem", "link": "index.php" },
+    { "name": "Bostäder", "link": "bostader.php" },
+    { "name": "Tjänster", "link": "tjanster.php" },
+    { "name": "Om oss", "link": "om-oss.php" },
+    { "name": "Kontakt", "link": "kontakt.php" }
+  ]
+}
