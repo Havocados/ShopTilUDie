@@ -12,17 +12,31 @@ Usage:
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
 import { fetchJSON } from '../../scripts/main.js';
+
+// Import page content functions
 import { homePageContent } from '../../pages/home.js';
 import { bostaderPageContent } from '../../pages/bostader.js';
-
+import { aboutPageContent } from '../../pages/om-oss.js';
+import { kontaktPageContent } from '../../pages/kontakt.js';
+import { tjansterPageContent } from '../../pages/tjanster.js';
 // -----------------------------------------------------------------------------------
 // Define constants                                                                  |
 // -----------------------------------------------------------------------------------
+// PLACEHOLDER IDEA, mapping page IDs to content functions
+// call this when swapping main content
+const pageContentMap = {
+    "home": homePageContent,
+    "bostader": bostaderPageContent,
+    "om-oss": aboutPageContent,
+    "kontakt": kontaktPageContent,
+    "tjanster": tjansterPageContent
+};
+
 const navbarTarget = document.querySelector('nav.navbar');
 const navbarDataFilename = './components/navbar/navbar.json';
 
 // -----------------------------------------------------------------------------------
-// Define constants                                                                  |
+// Define variables                                                                  |
 // -----------------------------------------------------------------------------------
 let navbarItems = [];
 
@@ -71,6 +85,8 @@ function renderNavbar() {
     renderNavbarLinks();
     // Setup event listeners for link highlighting
     addLinkEventListeners();
+    // Initially load home page content
+    homePageContent();
 };
 
 /* Function to fetch navbar links
@@ -113,18 +129,12 @@ function renderNavbarLinks() {
 This function replaces the inner HTML of the main content area */
 function swapMainContent(pageId) {
     const mainContentTarget = document.getElementById('main-content');
-    switch(pageId) {
-        case 'home':
-            homePageContent(mainContentTarget);
-            highlightActivePage('bome');
-            break;
-        case 'bostader':
-            bostaderPageContent(mainContentTarget);
-            highlightActivePage('bostader');
-            break;
-        // Add more cases as needed
+    const pagesContentMap = navbarItems.map(item => item.id);
+    if (pagesContentMap.includes(pageId)) {
+        pageContentMap[pageId](mainContentTarget);
+        highlightActivePage(pageId);
     }
-}
+};
 
 /* Function to add event listeners to navbar links
 This function sets up click event listeners on each navbar link
@@ -147,13 +157,11 @@ and removes it from other links in the navbar */
 function highlightActivePage(pageId) {
     const navigationListTarget = document.getElementById('navigation-list');
     const navLinks = navigationListTarget.getElementsByClassName('nav-link');
-    for (let i = 0; i < navLinks.length; i++) {
-        if (navLinks[i].id.replace('link-', '') === pageId) {
-            navLinks[i].classList.add('active');
-            navLinks[i].setAttribute('aria-current', 'page');
+    Array.from(navLinks).forEach(link => {
+        if (link.id === `link-${pageId}`) {
+            link.classList.add('active');
         } else {
-            navLinks[i].classList.remove('active');
-            navLinks[i].removeAttribute('aria-current');
+            link.classList.remove('active');
         }
-    }
+    });
 };
