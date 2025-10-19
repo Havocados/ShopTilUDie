@@ -1,9 +1,9 @@
 {
   "pages": [
-    { "name": "Hem", "link": "index.html" },
-    { "name": "Bostäder", "link": "index.html" },
-    { "name": "Tjänster", "link": "index.html" },
-    { "name": "Om oss", "link": "index.html" },
-    { "name": "Kontakt", "link": "index.html" }
+    { "index": 1, "id":"home", "displayName": "Hem", "script": "home.js" },
+    { "index": 2, "id":"bostader", "displayName": "Bostäder", "script": "bostader.js" },
+    { "index": 3, "id":"tjanster", "displayName": "Tjänster", "script": "tjanster.js" },
+    { "index": 4, "id":"om-oss", "displayName": "Om oss", "script": "omoss.js" },
+    { "index": 5, "id":"kontakt", "displayName": "Kontakt", "script": "kontakt.js" }
   ]
 }

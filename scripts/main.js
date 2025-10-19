@@ -2,9 +2,9 @@
 // Returns a promise that resolves to the parsed JSON object
 // ((Try not to overuse this function to avoid excessive network requests))
 function fetchJSON(filename) {
-  return fetch(filename)       
-    .then(response => response.json())
-    .then(json => {
+  return fetch(filename)
+    .then((response) => response.json())
+    .then((json) => {
       return json;
     });
 }

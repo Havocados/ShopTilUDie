@@ -9,9 +9,11 @@ Usage:
 */
 
 // -----------------------------------------------------------------------------------
-// Import dependencies                                                  |
+// Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
 import { fetchJSON } from '../../scripts/main.js';
+import { homePageContent } from '../../pages/home.js';
+import { bostaderPageContent } from '../../pages/bostader.js';
 
 // -----------------------------------------------------------------------------------
 // Define constants                                                                  |
@@ -20,9 +22,18 @@ const navbarTarget = document.querySelector('nav.navbar');
 const navbarDataFilename = './components/navbar/navbar.json';
 
 // -----------------------------------------------------------------------------------
+// Define constants                                                                  |
+// -----------------------------------------------------------------------------------
+let navbarItems = [];
+
+// -----------------------------------------------------------------------------------
 // Call the function to render the navbar                                            |
 // -----------------------------------------------------------------------------------
-renderNavbar();
+(async () => {
+    // Wait for the links to be fetched before rendering
+    await fetchLinks();
+    renderNavbar();
+})();
 
 // -----------------------------------------------------------------------------------
 // Function declarations                                                             |
@@ -58,24 +69,91 @@ function renderNavbar() {
     
     // When the navbar structure is rendered, populate the links
     renderNavbarLinks();
+    // Setup event listeners for link highlighting
+    addLinkEventListeners();
 };
 
-function renderNavbarLinks() {
-    fetchJSON(navbarDataFilename).then(navbarData => {
-        const navigationListTarget = document.getElementById('navigation-list');
-        // -------------------------- OUTPUT HTML FOR NAV LINKS -----------------------
+/* Function to fetch navbar links
+This function retrieves the navbar data from the JSON file and
+returns a promise that resolves when the links are fetched */
+function fetchLinks() {
+    return fetchJSON(navbarDataFilename).then(navbarData => {
+        // Build list of links
         navbarData.pages.forEach(page => {
-            navigationListTarget.innerHTML += /* html */`
-            <li class="nav-item mx-2">
-                <a class="nav-link link-body-emphasis"
-                   href="${page.link}">
-                   ${page.name}
-                </a>
-            </li>`;
+            navbarItems.push(page);
         });
-        // -------------------------- END OUTPUT HTML FOR NAV LINKS -------------------
     });
 };
-// -----------------------------------------------------------------------------------
-// End of function declarations                                                      |
-// -----------------------------------------------------------------------------------
+
+/* Function to render navbar links
+This function populates the navbar with links based on the fetched data */
+function renderNavbarLinks() {
+    const navigationListTarget = document.getElementById('navigation-list');
+    let linksHTML = '';
+    console.log("Rendering navbar links:", navbarItems);
+    navbarItems.forEach(page => {
+        console.log("Rendering link for page:", page.name);
+        // -------------------------- OUTPUT HTML FOR NAVBAR ---------------
+        linksHTML += /* html */`
+        <li class="nav-item mx-2">
+            <a class="nav-link link-body-emphasis"
+                href="#"
+                id="link-${page.id}">
+                ${page.displayName}
+            </a>
+        </li>`;
+        // -------------------------- OUTPUT HTML FOR NAVBAR ---------------
+    });
+    navigationListTarget.innerHTML = linksHTML;
+    // At the end of rendering links, setup event listeners for changing main content
+    addLinkEventListeners();
+};
+
+/* Function to swap main content based on page ID
+This function replaces the inner HTML of the main content area */
+function swapMainContent(pageId) {
+    const mainContentTarget = document.getElementById('main-content');
+    switch(pageId) {
+        case 'home':
+            homePageContent(mainContentTarget);
+            highlightActivePage('bome');
+            break;
+        case 'bostader':
+            bostaderPageContent(mainContentTarget);
+            highlightActivePage('bostader');
+            break;
+        // Add more cases as needed
+    }
+}
+
+/* Function to add event listeners to navbar links
+This function sets up click event listeners on each navbar link
+and swaps the main content out based on the link clicked */
+function addLinkEventListeners() {
+    const navigationListTarget = document.getElementById('navigation-list');
+    navigationListTarget.querySelectorAll('a.nav-link').forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const pageId = link.id.replace('link-', '');
+            swapMainContent(pageId);
+            highlightActivePage(link.textContent.trim());
+        });
+    });
+};
+
+/* Function to highlight the active page link
+This function adds the 'active' class to the currently active link
+and removes it from other links in the navbar */
+function highlightActivePage(pageId) {
+    const navigationListTarget = document.getElementById('navigation-list');
+    const navLinks = navigationListTarget.getElementsByClassName('nav-link');
+    for (let i = 0; i < navLinks.length; i++) {
+        if (navLinks[i].id.replace('link-', '') === pageId) {
+            navLinks[i].classList.add('active');
+            navLinks[i].setAttribute('aria-current', 'page');
+        } else {
+            navLinks[i].classList.remove('active');
+            navLinks[i].removeAttribute('aria-current');
+        }
+    }
+};

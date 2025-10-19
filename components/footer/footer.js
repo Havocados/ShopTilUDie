@@ -1,12 +1,15 @@
 /*
 Footer component script
-Description: This file handles the rendering of the footer component.
+
+Description:
+    This file handles the rendering of the footer component.
 */
 
 // -----------------------------------------------------------------------------------
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
 import { fetchJSON } from '../../scripts/main.js';
+
 // -----------------------------------------------------------------------------------
 // Define constants                                                                  |
 // -----------------------------------------------------------------------------------
@@ -21,7 +24,7 @@ const navbarDataFilename = './components/navbar/navbar.json';
 // -----------------------------------------------------------------------------------
 // Render footer HTML                                                                |
 // -----------------------------------------------------------------------------------
-if (footerTarget.innerHTML.trim() === '') {
+if (footerTarget.innerHTML.trim() === '') { // Only render if footer is empty
     footerTarget.innerHTML += /* html */`
     <div class="col mb-3">
         <a href="index.php" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none"
@@ -48,6 +51,9 @@ if (footerTarget.innerHTML.trim() === '') {
     console.warn('Footer target element is not empty. Footer HTML output skipped to avoid overwriting existing content.');
 }
 
+// -----------------------------------------------------------------------------------
+// Function declarations                                                             |
+// -----------------------------------------------------------------------------------
 function renderFooterLinks(){
     fetchJSON(navbarDataFilename).then(navbarData => {
         const navigationListTarget = document.getElementById('footer-navigation-list');
@@ -56,8 +62,8 @@ function renderFooterLinks(){
             navigationListTarget.innerHTML += /* html */`
             <li class="nav-item mb-2">
                 <a class="nav-link p-0 text-body-secondary"
-                    href="${page.link}">
-                    ${page.name}
+                    href="#">
+                    ${page.displayName}
                 </a>
             </li>`;
         });
