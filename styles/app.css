@@ -1,3 +1,14 @@
+@import url("http://fonts.googleapis.com/css?family=Onest:400,300,700");
+
 :root {
   --bs-body-bg: var(--bs-gray-100);
+}
+
+body {
+  background-color: var(--bs-body-bg);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Onest', 'Arial', sans-serif !important;
+  font-weight: 400;
 }

@@ -1,9 +1,9 @@
 {
   "pages": [
-    { "name": "Hem", "link": "index.php" },
-    { "name": "Bostäder", "link": "bostader.php" },
-    { "name": "Tjänster", "link": "tjanster.php" },
-    { "name": "Om oss", "link": "om-oss.php" },
-    { "name": "Kontakt", "link": "kontakt.php" }
+    { "name": "Hem", "link": "index.html" },
+    { "name": "Bostäder", "link": "index.html" },
+    { "name": "Tjänster", "link": "index.html" },
+    { "name": "Om oss", "link": "index.html" },
+    { "name": "Kontakt", "link": "index.html" }
   ]
 }
