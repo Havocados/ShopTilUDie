@@ -165,3 +165,20 @@ function highlightActivePage(pageId) {
         }
     });
 };
+
+function collapseNavbar() {
+    const navbarCollapse = document.getElementById('navbarSupportedContent');
+    if (navbarCollapse.classList.contains('show')) {
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+            toggle: true
+        });
+        bsCollapse.hide();
+    }
+}
+
+// Collapse navbar after clicking a link (for mobile view)
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('nav-link')) {
+        collapseNavbar();
+    }
+});
