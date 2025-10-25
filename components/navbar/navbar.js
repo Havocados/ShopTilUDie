@@ -166,6 +166,10 @@ function highlightActivePage(pageId) {
     });
 };
 
+
+// ---- TODO: Possibly refactor this into somewhere else. ------------
+// Navbar collapse functionality for mobile view
+// -------------------------------------------------------------------
 function collapseNavbar() {
     const navbarCollapse = document.getElementById('navbarSupportedContent');
     if (navbarCollapse.classList.contains('show')) {
@@ -182,3 +186,4 @@ document.addEventListener('click', (event) => {
         collapseNavbar();
     }
 });
+// -------------------------------------------------------------------
