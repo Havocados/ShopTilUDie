@@ -16,7 +16,8 @@ export function bostaderPageContent(target=document.getElementById('main-content
         #holy-roller:hover {
           transform: translatey(-100%);
         }
-      </style>
+    </style>
+
     `;
     
 }

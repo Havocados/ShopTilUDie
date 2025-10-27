@@ -1,9 +1,12 @@
+import { fetchProduct, createProductCard } from '/components/productCard/productCard.js';
+
 export function aboutPageContent(
   target = document.getElementById("main-content")
 ) {
   target.innerHTML = /* html */ `
       <div class="section p-4 text-start bg-light">
         <div class="container">
+        <button class="btn btn-primary mb-4" id="product-button">Get product 1</button>
         <section id="om-oss-section">
           <h1>
             Hypertext Accordion
@@ -32,7 +35,10 @@ export function aboutPageContent(
           </details>
         </section>
         </div>
+        <div id="product-container"></div>
+        <script type="module" src="/components/productCard/productCard.js"></script>
         <style>
+        
           #om-oss-section {
             padding-top: 4rem;
             width: 50%;
@@ -87,4 +93,14 @@ export function aboutPageContent(
         </style>
       </div>
     `;
+    const productButton = document.getElementById('product-button');
+    productButton.addEventListener('click', fetchProduct);
+    const numberOfProducts = 2;
+    const productContainer = document.getElementById('product-container');
+    fetch(`https://fakestoreapi.com/products/${numberOfProducts}`)
+      .then(response => response.json())
+      .then(data => {
+        const productCard = createProductCard(data);
+        productContainer.appendChild(productCard);
+      });
 }
