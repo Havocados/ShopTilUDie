@@ -94,13 +94,10 @@ export function aboutPageContent(
       </div>
     `;
     const productButton = document.getElementById('product-button');
-    productButton.addEventListener('click', fetchProduct);
-    const numberOfProducts = 2;
-    const productContainer = document.getElementById('product-container');
-    fetch(`https://fakestoreapi.com/products/${numberOfProducts}`)
-      .then(response => response.json())
-      .then(data => {
-        const productCard = createProductCard(data);
-        productContainer.appendChild(productCard);
-      });
-}
+    let productId = 1;
+    productButton.addEventListener('click', () => {
+        fetchProduct(productId);
+        productId++;
+        productButton.textContent = `Get product ${productId}`;
+    });
+  }

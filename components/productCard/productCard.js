@@ -1,10 +1,13 @@
-function fetchProduct(){
-    fetch('https://fakestoreapi.com/products/1')
+function fetchProduct(productId = 1) {
+    fetch(`https://fakestoreapi.com/products/${productId}`)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then((data) => {
+            createProductCard(data);
+        });
 }
 
 function createProductCard(product) {
+    const productContainer = document.getElementById('product-container');
     const productCard = document.createElement('div');
     productCard.className = 'product-card';
     productCard.innerHTML = `
@@ -12,7 +15,7 @@ function createProductCard(product) {
         <p>${product.description}</p>
         <p>Price: $${product.price}</p>
     `;
-    return productCard;
+    productContainer.appendChild(productCard);
 }
 
 export { fetchProduct, createProductCard };
