@@ -1,6 +1,10 @@
 export function tjansterPageContent(
   target = document.getElementById("main-content")
 ) {
+  // Set the document title
+  document.title = "Tjänster - ShopTilUDie";
+  
+  // Swap out the inner HTML of the main content area
   target.innerHTML = /* html */ `
       <div class="section p-4 text-start bg-light">
         <div class="container">

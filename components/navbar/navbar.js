@@ -1,4 +1,3 @@
-
 /*
 Navbar component script
 
@@ -12,29 +11,29 @@ Usage:
 // -----------------------------------------------------------------------------------
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
-import { fetchJSON } from '../../scripts/main.js';
+import { fetchJSON } from "../../scripts/main.js";
 
 // Import page content functions
-import { homePageContent } from '../../pages/home.js';
-import { bostaderPageContent } from '../../pages/bostader.js';
-import { aboutPageContent } from '../../pages/om-oss.js';
-import { kontaktPageContent } from '../../pages/kontakt.js';
-import { tjansterPageContent } from '../../pages/tjanster.js';
+import { homePageContent } from "../../pages/home.js";
+import { bostaderPageContent } from "../../pages/bostader.js";
+import { aboutPageContent } from "../../pages/om-oss.js";
+import { kontaktPageContent } from "../../pages/kontakt.js";
+import { tjansterPageContent } from "../../pages/tjanster.js";
 // -----------------------------------------------------------------------------------
 // Define constants                                                                  |
 // -----------------------------------------------------------------------------------
 // PLACEHOLDER IDEA, mapping page IDs to content functions
 // call this when swapping main content
 const pageContentMap = {
-    "home": homePageContent,
-    "bostader": bostaderPageContent,
-    "om-oss": aboutPageContent,
-    "kontakt": kontaktPageContent,
-    "tjanster": tjansterPageContent
+  home: homePageContent,
+  bostader: bostaderPageContent,
+  "om-oss": aboutPageContent,
+  kontakt: kontaktPageContent,
+  tjanster: tjansterPageContent,
 };
 
-const navbarTarget = document.querySelector('nav.navbar');
-const navbarDataFilename = './components/navbar/navbar.json';
+const navbarTarget = document.querySelector("nav.navbar");
+const navbarDataFilename = "./components/navbar/navbar.json";
 
 // -----------------------------------------------------------------------------------
 // Define variables                                                                  |
@@ -46,19 +45,19 @@ let navbarItems = [];
 // -----------------------------------------------------------------------------------
 // Initialize navbar and SPA navigation
 (async () => {
-    await fetchLinks();
-    renderNavbar();
-    addLinkEventListeners();
-    // Initial render based on current path
-    renderRoute(window.location.pathname);
+  await fetchLinks();
+  renderNavbar();
+  addLinkEventListeners();
+  // Initial render based on current path
+  renderRoute(window.location.pathname);
 })();
 
 // -----------------------------------------------------------------------------------
 // Function declarations                                                             |
 // -----------------------------------------------------------------------------------
 function renderNavbar() {
-    // -------------------------- OUTPUT HTML FOR NAVBAR -----------------------------
-    navbarTarget.innerHTML = /* html */`
+  // -------------------------- OUTPUT HTML FOR NAVBAR -----------------------------
+  navbarTarget.innerHTML = /* html */ `
     <div class="container pt-1 pb-3 my-1 border-bottom">
         <a  href="index.php"
             class="d-flex align-items-center link-body-emphasis text-decoration-none"
@@ -83,111 +82,111 @@ function renderNavbar() {
             </ul>
         </div>
     </div>`;
-    // -------------------------- END OUTPUT HTML FOR NAVBAR --------------------------
-    
-    // When the navbar structure is rendered, populate the links
-    renderNavbarLinks();
-    // Initially load home page content
-    homePageContent();
-};
+  // -------------------------- END OUTPUT HTML FOR NAVBAR --------------------------
+
+  // When the navbar structure is rendered, populate the links
+  renderNavbarLinks();
+  // Initially load home page content
+  homePageContent();
+}
 
 /* Function to fetch navbar links
 This function retrieves the navbar data from the JSON file and
 returns a promise that resolves when the links are fetched */
 function fetchLinks() {
-    return fetchJSON(navbarDataFilename).then(navbarData => {
-        // Build list of links
-        navbarData.pages.forEach(page => {
-            navbarItems.push(page);
-        });
+  return fetchJSON(navbarDataFilename).then((navbarData) => {
+    // Build list of links
+    navbarData.pages.forEach((page) => {
+      navbarItems.push(page);
     });
-};
+  });
+}
 
 /* Function to render navbar links
 This function populates the navbar with links based on the fetched data */
 function renderNavbarLinks() {
-    const navigationListTarget = document.getElementById('navigation-list');
-    let linksHTML = '';
-    navbarItems.forEach(page => {
-        // Use route-style hrefs and data-spa-link for SPA navigation
-        linksHTML += /* html */`
+  const navigationListTarget = document.getElementById("navigation-list");
+  let linksHTML = "";
+  navbarItems.forEach((page) => {
+    // Use route-style hrefs and data-spa-link for SPA navigation
+    linksHTML += /* html */ `
         <li class="nav-item mx-2">
             <a class="nav-link link-body-emphasis" href="/${page.id}" data-spa-link id="link-${page.id}">
                 ${page.displayName}
             </a>
         </li>`;
-    });
-    navigationListTarget.innerHTML = linksHTML;
+  });
+  navigationListTarget.innerHTML = linksHTML;
 }
 
 /* Function to add event listeners to navbar links
 This function sets up click event listeners on each navbar link
 and swaps the main content out based on the link clicked */
 function addLinkEventListeners() {
-    document.addEventListener('click', function (e) {
-        const link = e.target.closest('a[data-spa-link]');
-        if (link) {
-            e.preventDefault();
-            const path = link.getAttribute('href');
-            history.pushState({ path }, '', path);
-            renderRoute(path);
-            highlightActivePage(link.id.replace('link-', ''));
-        }
-    });
+  document.addEventListener("click", function (e) {
+    const link = e.target.closest("a[data-spa-link]");
+    if (link) {
+      e.preventDefault();
+      const path = link.getAttribute("href");
+      history.pushState({ path }, "", path);
+      renderRoute(path);
+      highlightActivePage(link.id.replace("link-", ""));
+    }
+  });
 
-    window.addEventListener('popstate', (event) => {
-        const path = (event.state && event.state.path) || window.location.pathname;
-        renderRoute(path);
-        highlightActivePage(path.replace('/', ''));
-    });
+  window.addEventListener("popstate", (event) => {
+    const path = (event.state && event.state.path) || window.location.pathname;
+    renderRoute(path);
+    highlightActivePage(path.replace("/", ""));
+  });
 }
 
 /* SPA route rendering function
    This function is responsible for rendering the appropriate content
    based on the current route */
 function renderRoute(path) {
-    const mainContentTarget = document.getElementById('main-content');
-    const pageId = path.replace('/', '');
-    if (pageContentMap[pageId]) {
-        pageContentMap[pageId](mainContentTarget);
-    } else {
-        // Default to home if route not found
-        pageContentMap['home'](mainContentTarget);
-    }
+  const mainContentTarget = document.getElementById("main-content");
+  const pageId = path.replace("/", "");
+  if (pageContentMap[pageId]) {
+    pageContentMap[pageId](mainContentTarget);
+  } else {
+    // Default to home if route not found
+    pageContentMap["home"](mainContentTarget);
+  }
 }
 
 /* Function to highlight the active page link
 This function adds the 'active' class to the currently active link
 and removes it from other links in the navbar */
 function highlightActivePage(pageId) {
-    const navigationListTarget = document.getElementById('navigation-list');
-    const navLinks = navigationListTarget.getElementsByClassName('nav-link');
-    Array.from(navLinks).forEach(link => {
-        if (link.id === `link-${pageId}`) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-};
+  const navigationListTarget = document.getElementById("navigation-list");
+  const navLinks = navigationListTarget.getElementsByClassName("nav-link");
+  Array.from(navLinks).forEach((link) => {
+    if (link.id === `link-${pageId}`) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
+}
 
 // ---- TODO: Possibly refactor this into somewhere else. ------------
 // Navbar collapse functionality for mobile view
 // -------------------------------------------------------------------
 function collapseNavbar() {
-    const navbarCollapse = document.getElementById('navbarSupportedContent');
-    if (navbarCollapse.classList.contains('show')) {
-        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-            toggle: true
-        });
-        bsCollapse.hide();
-    }
+  const navbarCollapse = document.getElementById("navbarSupportedContent");
+  if (navbarCollapse.classList.contains("show")) {
+    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+      toggle: true,
+    });
+    bsCollapse.hide();
+  }
 }
 
 // Collapse navbar after clicking a link (for mobile view)
-document.addEventListener('click', (event) => {
-    if (event.target.classList.contains('nav-link')) {
-        collapseNavbar();
-    }
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("nav-link")) {
+    collapseNavbar();
+  }
 });
 // -------------------------------------------------------------------

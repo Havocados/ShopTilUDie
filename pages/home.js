@@ -1,6 +1,10 @@
 export function homePageContent(
   target = document.getElementById("main-content")
 ) {
+  // Set the document title
+  document.title = "Home - ShopTilUDie";
+  
+  // Swap out the inner HTML of the main content area
   target.innerHTML = /* html */ `
     <div id="home-section" class="section row justify-content-center p-4 text-start bg-light">
 

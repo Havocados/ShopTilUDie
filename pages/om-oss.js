@@ -1,8 +1,15 @@
-import { fetchProduct, createProductCard } from '/components/productCard/productCard.js';
+import {
+  fetchProduct,
+  createProductCard,
+} from "/components/productCard/productCard.js";
 
 export function aboutPageContent(
   target = document.getElementById("main-content")
 ) {
+  // Set the document title
+  document.title = "Om Oss - ShopTilUDie";
+
+  // Swap out the inner HTML of the main content area
   target.innerHTML = /* html */ `
       <div class="section p-4 text-start bg-light">
         <div class="container">
@@ -93,11 +100,11 @@ export function aboutPageContent(
         </style>
       </div>
     `;
-    const productButton = document.getElementById('product-button');
-    let productId = 1;
-    productButton.addEventListener('click', () => {
-        fetchProduct(productId);
-        productId++;
-        productButton.textContent = `Get product ${productId}`;
-    });
-  }
+  const productButton = document.getElementById("product-button");
+  let productId = 1;
+  productButton.addEventListener("click", () => {
+    fetchProduct(productId);
+    productId++;
+    productButton.textContent = `Get product ${productId}`;
+  });
+}
