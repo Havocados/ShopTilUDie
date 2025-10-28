@@ -1,3 +1,4 @@
+
 /*
 Navbar component script
 
@@ -43,10 +44,13 @@ let navbarItems = [];
 // -----------------------------------------------------------------------------------
 // Call the function to render the navbar                                            |
 // -----------------------------------------------------------------------------------
+// Initialize navbar and SPA navigation
 (async () => {
-    // Wait for the links to be fetched before rendering
     await fetchLinks();
     renderNavbar();
+    addLinkEventListeners();
+    // Initial render based on current path
+    renderRoute(window.location.pathname);
 })();
 
 // -----------------------------------------------------------------------------------
@@ -83,8 +87,6 @@ function renderNavbar() {
     
     // When the navbar structure is rendered, populate the links
     renderNavbarLinks();
-    // Setup event listeners for link highlighting
-    addLinkEventListeners();
     // Initially load home page content
     homePageContent();
 };
@@ -106,50 +108,53 @@ This function populates the navbar with links based on the fetched data */
 function renderNavbarLinks() {
     const navigationListTarget = document.getElementById('navigation-list');
     let linksHTML = '';
-    console.log("Rendering navbar links:", navbarItems);
     navbarItems.forEach(page => {
-        console.log("Rendering link for page:", page.name);
-        // -------------------------- OUTPUT HTML FOR NAVBAR ---------------
+        // Use route-style hrefs and data-spa-link for SPA navigation
         linksHTML += /* html */`
         <li class="nav-item mx-2">
-            <a class="nav-link link-body-emphasis"
-                href="#"
-                id="link-${page.id}">
+            <a class="nav-link link-body-emphasis" href="/${page.id}" data-spa-link id="link-${page.id}">
                 ${page.displayName}
             </a>
         </li>`;
-        // -------------------------- OUTPUT HTML FOR NAVBAR ---------------
     });
     navigationListTarget.innerHTML = linksHTML;
-    // At the end of rendering links, setup event listeners for changing main content
-    addLinkEventListeners();
-};
-
-/* Function to swap main content based on page ID
-This function replaces the inner HTML of the main content area */
-function swapMainContent(pageId) {
-    const mainContentTarget = document.getElementById('main-content');
-    const pagesContentMap = navbarItems.map(item => item.id);
-    if (pagesContentMap.includes(pageId)) {
-        pageContentMap[pageId](mainContentTarget);
-        highlightActivePage(pageId);
-    }
-};
+}
 
 /* Function to add event listeners to navbar links
 This function sets up click event listeners on each navbar link
 and swaps the main content out based on the link clicked */
 function addLinkEventListeners() {
-    const navigationListTarget = document.getElementById('navigation-list');
-    navigationListTarget.querySelectorAll('a.nav-link').forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            const pageId = link.id.replace('link-', '');
-            swapMainContent(pageId);
-            highlightActivePage(link.textContent.trim());
-        });
+    document.addEventListener('click', function (e) {
+        const link = e.target.closest('a[data-spa-link]');
+        if (link) {
+            e.preventDefault();
+            const path = link.getAttribute('href');
+            history.pushState({ path }, '', path);
+            renderRoute(path);
+            highlightActivePage(link.id.replace('link-', ''));
+        }
     });
-};
+
+    window.addEventListener('popstate', (event) => {
+        const path = (event.state && event.state.path) || window.location.pathname;
+        renderRoute(path);
+        highlightActivePage(path.replace('/', ''));
+    });
+}
+
+/* SPA route rendering function
+   This function is responsible for rendering the appropriate content
+   based on the current route */
+function renderRoute(path) {
+    const mainContentTarget = document.getElementById('main-content');
+    const pageId = path.replace('/', '');
+    if (pageContentMap[pageId]) {
+        pageContentMap[pageId](mainContentTarget);
+    } else {
+        // Default to home if route not found
+        pageContentMap['home'](mainContentTarget);
+    }
+}
 
 /* Function to highlight the active page link
 This function adds the 'active' class to the currently active link
@@ -165,7 +170,6 @@ function highlightActivePage(pageId) {
         }
     });
 };
-
 
 // ---- TODO: Possibly refactor this into somewhere else. ------------
 // Navbar collapse functionality for mobile view
