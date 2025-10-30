@@ -15,7 +15,7 @@ import { fetchJSON } from "../../scripts/main.js";
 
 // Import page content functions
 import { homePageContent } from "../../pages/home.js";
-import { bostaderPageContent } from "../../pages/bostader.js";
+import { produkterPageContent } from "../../pages/produkter.js";
 import { aboutPageContent } from "../../pages/om-oss.js";
 import { kontaktPageContent } from "../../pages/kontakt.js";
 import { tjansterPageContent } from "../../pages/tjanster.js";
@@ -26,7 +26,7 @@ import { tjansterPageContent } from "../../pages/tjanster.js";
 // call this when swapping main content
 const pageContentMap = {
   home: homePageContent,
-  bostader: bostaderPageContent,
+  produkter: produkterPageContent,
   "om-oss": aboutPageContent,
   kontakt: kontaktPageContent,
   tjanster: tjansterPageContent,
@@ -48,6 +48,7 @@ let navbarItems = [];
   await fetchLinks();
   renderNavbar();
   addLinkEventListeners();
+  
   // Initial render based on current path
   renderRoute(window.location.pathname);
 })();
@@ -151,7 +152,7 @@ function renderRoute(path) {
     pageContentMap[pageId](mainContentTarget);
   } else {
     // Default to home if route not found
-    pageContentMap[""](mainContentTarget);
+    pageContentMap["home"](mainContentTarget);
   }
 }
 

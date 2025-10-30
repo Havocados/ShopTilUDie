@@ -108,11 +108,15 @@ class Product {
     createProductCard(product, containerId='product-container') {
         const productContainer = document.getElementById(containerId);
         const productCard = document.createElement('div');
-        productCard.className = 'product-card';
+        productCard.className = 'product-card p-3 border rounded';
         productCard.innerHTML = `
-            <h2>${product.title}</h2>
+            <div class="image-box justify-content-center d-flex mb-3">
+                <img src="${product.image}" alt="${product.title}" style="max-height:200px" />
+            </div>
+            <h2 class="h4">${product.title}</h2>
             <p>${product.description}</p>
             <p>Price: $${product.price}</p>
+            <button class="btn btn-primary add-to-cart" data-id="${product.id}">Add to Cart</button>
         `;
         productContainer.appendChild(productCard);
     }
@@ -132,7 +136,25 @@ class ProductList {
     set products(newProducts) {
         this.#products = newProducts;
     }
+/* 
+    initElements() {
+        this.buttonElements = {
+            btnAddToCart: document.querySelectorAll('.add-to-cart')
+        }
+    }
 
+    setupEventListeners(){
+        this.buttonElements.btnAddToCart.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productId = parseInt(e.target.getAttribute('data-id'));
+                const productToAdd = this.#products.find(prod => prod.id === productId);
+                if (productToAdd) {
+                    cart.addItem(productToAdd);
+                }
+            });
+        });
+    }
+ */
     addProduct(product) {
         this.#products.push(product);
     }
@@ -165,36 +187,5 @@ class ProductList {
         return this.#products.filter(product => product.category === category);
     }
 }
-
-let productList = new ProductList();
-// Use the productList to fetch and save to local storage
-
-productList.fetchAllProducts().then(() => {
-    productList.products.forEach(product => {
-        productList.addProduct(product);
-    });
-
-    // Save to local storage
-    productList.saveToLocalStorage();
-});
-
-// Load products from local storage and render every item in the list
-productList.loadFromLocalStorage();
-productList.products.forEach(product => {
-    product.createProductCard(product);
-});
-
-// Clear out the products list div and
-// render filtered product list when pressing a button
-const filterButton = document.getElementById('load-electronics-button');
-filterButton.addEventListener('click', () => {
-    const electronicsProducts = productList.filterByCategory('electronics');
-    const productContainer = document.getElementById('product-container');
-    productContainer.innerHTML = '';
-
-    electronicsProducts.forEach(product => {
-        product.createProductCard(product);
-    });
-});
 
 export { Product, ProductList };
