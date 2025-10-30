@@ -113,8 +113,6 @@ class Product {
             <h2>${product.title}</h2>
             <p>${product.description}</p>
             <p>Price: $${product.price}</p>
-            <img src="${product.image}" alt="${product.title}" width="150" />
-            <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
         `;
         productContainer.appendChild(productCard);
     }
@@ -144,7 +142,6 @@ class ProductList {
 
     }
 
-    // Retrieve all products from API
     fetchAllProducts(apiURL = 'https://fakestoreapi.com/products') {
         return fetch(apiURL)
             .then(response => response.json())
@@ -164,43 +161,29 @@ class ProductList {
         this.#products = productsJSON.map(item => Product.fromObject(item));
     }
 
-    renderAllProducts(containerId='product-container') {
-        const productContainer = document.getElementById(containerId);
-        productContainer.innerHTML = '';
-        this.#products.forEach(product => {
-            product.createProductCard(product, containerId);
-        });
-    }
-
     filterByCategory(category) {
         return this.#products.filter(product => product.category === category);
     }
 }
 
 let productList = new ProductList();
+// Use the productList to fetch and save to local storage
 
-// Fetch products from API if not in local storage
-if (!localStorage.getItem('productList')) {
-    productList.fetchAllProducts().then(() => {
-        productList.saveToLocalStorage();
-        productList.renderAllProducts();
+productList.fetchAllProducts().then(() => {
+    productList.products.forEach(product => {
+        productList.addProduct(product);
     });
-} else { // Otherwise load from local storage
-    productList.loadFromLocalStorage();
-    productList.renderAllProducts();
-}
 
-// Event handler for cart buttons
-document.addEventListener('click', function (e) {
-    const button = e.target.closest('button.add-to-cart');;
-    if (!button) return;
-    const productId = button.getAttribute('data-id');
-    // Add the product to the cart
-    console.log('Adding product to cart:', productId);
-    
-}   );
+    // Save to local storage
+    productList.saveToLocalStorage();
+});
 
-/* 
+// Load products from local storage and render every item in the list
+productList.loadFromLocalStorage();
+productList.products.forEach(product => {
+    product.createProductCard(product);
+});
+
 // Clear out the products list div and
 // render filtered product list when pressing a button
 const filterButton = document.getElementById('load-electronics-button');
@@ -211,28 +194,6 @@ filterButton.addEventListener('click', () => {
 
     electronicsProducts.forEach(product => {
         product.createProductCard(product);
-        console.log('Rendered product:', product.title , ' with ID: ', product.id);
-    });
-});
- */
-// Filter products by category when the selection changes, using a dropdown
-// with id 'category-select', and re-rendering the product list when changed
-// no button needed.
-const categorySelect = document.getElementById('category-select');
-categorySelect.addEventListener('change', () => {
-    const selectedCategory = categorySelect.value;
-    // Edge case for 'all' category, which shows all products
-    if (selectedCategory === 'all') {
-        productList.renderAllProducts();
-        return;
-    }
-    const filteredProducts = productList.filterByCategory(selectedCategory);
-    const productContainer = document.getElementById('product-container');
-    productContainer.innerHTML = '';
-
-    filteredProducts.forEach(product => {
-        product.createProductCard(product);
-        console.log('Rendered product:', product.title , ' with ID: ', product.id);
     });
 });
 
