@@ -22,45 +22,7 @@ export function produkterPageContent(
         <option value="women's clothing">Women's Clothing</option>
       </select>
     </div>
-    <button
-      id="view-cart-button"
-      class="btn btn-primary"
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasRightScroll"
-      aria-controls="offcanvasRightScroll"
-    >
-      Toggle right offcanvas with scroll & backdrop
-    </button>
 
-    <div
-      class="offcanvas offcanvas-end"
-      data-bs-scroll="true"
-      tabindex="-1"
-      id="offcanvasRightScroll"
-      aria-labelledby="offcanvasRightScrollLabel"
-    >
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasRightScrollLabel">
-          Your Cart
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="offcanvas-body">
-        <div id="cart-items-container">
-            <div id="cart-items">
-                <!-- Cart items will be injected here -->
-            </div>
-        </div>
-        <button class="btn btn-primary">Go to Checkout</button>
-        <button class="btn btn-danger">Delete All</button>
-      </div>
-    </div>
     <div class="album py-5 bg-body-tertiary">
       <div class="container">
         <div
@@ -124,6 +86,7 @@ function setupCartEventListeners() {
           const productToAdd = productList.products.find(prod => prod.id === productId);
           if (productToAdd) {
                     cart.addItem(productToAdd);
+                    cart.renderCartItems();
                 }
             });
         });

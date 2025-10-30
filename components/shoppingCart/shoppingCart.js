@@ -7,18 +7,19 @@ class ShoppingCart {
     }
     initElements() {
         this.buttonElements = {
-            btnShoppingCart: document.getElementById('view-cart-button'),
-            btnCheckout: document.getElementById('go-to-checkout'),
-            btnDeleteAll: document.getElementById('delete-all')
+            // btnShoppingCart: document.getElementById('view-cart-button'),
+            btnCheckout: document.getElementById('btn-checkout'),
+            btnDeleteAll: document.getElementById('btn-clear-cart')
         };
     }
 
     setupEventListeners(){
-        this.buttonElements.btnShoppingCart.addEventListener('click', () => {
-            cart.renderCartItems();
-        });
+        // this.buttonElements.btnShoppingCart.addEventListener('click', () => {
+        //     cart.renderCartItems();
+        // });
         this.buttonElements.btnCheckout.addEventListener('click', () => {
-            cart.checkout();
+            //cart.checkout();
+            return
         });
         this.buttonElements.btnDeleteAll.addEventListener('click', () => {
             cart.clearCart();
@@ -42,7 +43,8 @@ class ShoppingCart {
     clearCart() {
         this.#items = [];
         this.saveToLocalStorage();
-
+        document.getElementById('cart-items').innerHTML = '';
+        this.loadFromLocalStorage();
     }
 
     renderCartItems(containerId='cart-items') {
@@ -100,4 +102,31 @@ class ShoppingCart {
     }
 }
 
-export { ShoppingCart };
+function initializeOffcanvasCart() {
+    document.body.innerHTML += /* html */ `
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightScroll" aria-labelledby="offcanvasRightScrollLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasRightScrollLabel">Your Cart</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div id="cart-items-container">
+              <div id="cart-items">
+                  <!-- Cart items will be injected here -->
+              </div>
+          </div>
+          <button class="btn btn-primary" id="btn-checkout">Go to Checkout</button>
+          <button class="btn btn-danger" id="btn-clear-cart">Delete All</button>
+        </div>
+      </div>
+    `;
+    // Initialize cart
+}
+const cart = new ShoppingCart();
+initializeOffcanvasCart();
+cart.initElements();
+cart.setupEventListeners();
+cart.loadFromLocalStorage();
+cart.renderCartItems();
+
+export { ShoppingCart, initializeOffcanvasCart, cart };

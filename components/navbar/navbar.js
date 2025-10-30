@@ -48,7 +48,7 @@ let navbarItems = [];
   await fetchLinks();
   renderNavbar();
   addLinkEventListeners();
-  
+
   // Initial render based on current path
   renderRoute(window.location.pathname);
 })();
@@ -78,6 +78,16 @@ function renderNavbar() {
         </button>
         <div class="collapse navbar-collapse justify-content-end"
              id="navbarSupportedContent">
+                <button
+                  id="view-cart-button"
+                  class="btn btn-primary"
+                  type="button"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasRightScroll"
+                  aria-controls="offcanvasRightScroll"
+                >
+                  🛒
+                </button>
             <ul class="navbar-nav me-0 mb-2 mb-lg-0" id="navigation-list">
 
             </ul>
