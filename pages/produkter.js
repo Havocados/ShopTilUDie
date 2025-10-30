@@ -1,8 +1,7 @@
 import { Product, ProductList } from "../components/productCard/productCard.js";
-import { ShoppingCart } from "../components/shoppingCart/shoppingCart.js";
+//import { ShoppingCart } from "../components/shoppingCart/shoppingCart.js";
 
 const productList = new ProductList();
-const cart = new ShoppingCart();
 const localStorageKey = "productList";
 
 export function produkterPageContent(
@@ -36,7 +35,6 @@ export function produkterPageContent(
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script type="module" src="../shoppingCart/shoppingCart.js"></script>
     <script type="module" src="../productCard/productCard.js"></script>
 
     <style lang="">

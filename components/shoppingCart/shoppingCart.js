@@ -1,5 +1,11 @@
+// -----------------------------------------------------------------------------------
+// Import dependencies                                                               |
+// -----------------------------------------------------------------------------------
 import { Product, ProductList } from '../productCard/productCard.js';    
 
+// -----------------------------------------------------------------------------------
+// Class declaration for our shopping cart and its methods                           |
+// -----------------------------------------------------------------------------------
 class ShoppingCart {
     #items;
     constructor() {
@@ -85,12 +91,10 @@ class ShoppingCart {
         });
     }
 
-    // Helper method to create cart item JSON representation
     toJSON() {
         return this.#items.map(item => item.toJSON());
     }
 
-    // Load cart items from local storage
     loadFromLocalStorage() {
         const cartJSON = JSON.parse(localStorage.getItem('shoppingCart')) || [];
         this.#items = cartJSON.map(item => Product.fromObject(item));
@@ -102,6 +106,10 @@ class ShoppingCart {
     }
 }
 
+// -----------------------------------------------------------------------------------
+// Function to initialize the offcanvas cart structure in the DOM                    |
+// we also initialize the product list and setup event listeners
+// -----------------------------------------------------------------------------------
 function initializeOffcanvasCart() {
     document.body.innerHTML += /* html */ `
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightScroll" aria-labelledby="offcanvasRightScrollLabel">
@@ -122,6 +130,7 @@ function initializeOffcanvasCart() {
     `;
     // Initialize cart
 }
+
 const cart = new ShoppingCart();
 initializeOffcanvasCart();
 cart.initElements();
@@ -129,4 +138,4 @@ cart.setupEventListeners();
 cart.loadFromLocalStorage();
 cart.renderCartItems();
 
-export { ShoppingCart, initializeOffcanvasCart, cart };
+export { initializeOffcanvasCart };

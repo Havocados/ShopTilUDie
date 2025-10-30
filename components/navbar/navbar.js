@@ -11,7 +11,7 @@ Usage:
 // -----------------------------------------------------------------------------------
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
-import { fetchJSON } from "../../scripts/main.js";
+import navbarData from "./navbar.json" with { type: "json" };
 
 // Import page content functions
 import { homePageContent } from "../../pages/home.js";
@@ -33,25 +33,21 @@ const pageContentMap = {
 };
 
 const navbarTarget = document.querySelector("nav.navbar");
-const navbarDataFilename = "./components/navbar/navbar.json";
 
 // -----------------------------------------------------------------------------------
 // Define variables                                                                  |
 // -----------------------------------------------------------------------------------
-let navbarItems = [];
+let navbarItems = navbarData.pages;
 
 // -----------------------------------------------------------------------------------
 // Call the function to render the navbar                                            |
 // -----------------------------------------------------------------------------------
 // Initialize navbar and SPA navigation
-(async () => {
-  await fetchLinks();
-  renderNavbar();
-  addLinkEventListeners();
+renderNavbar();
+addLinkEventListeners();
+// Initial render based on current path
+renderRoute(window.location.pathname);
 
-  // Initial render based on current path
-  renderRoute(window.location.pathname);
-})();
 
 // -----------------------------------------------------------------------------------
 // Function declarations                                                             |
@@ -63,9 +59,7 @@ function renderNavbar() {
         <a  href="index.php"
             class="d-flex align-items-center link-body-emphasis text-decoration-none"
             aria-label="Bootstrap">
-        <svg class="bi" width="103" height="60" aria-hidden="true">
-            <use xlink:href="#blge-logo-nav"></use>
-        </svg>
+            <span class="fs-4">ShopTilUDie</span>
         </a>
         <button class="navbar-toggler"
                 type="button"
@@ -76,18 +70,19 @@ function renderNavbar() {
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse justify-content-end"
              id="navbarSupportedContent">
-                <button
-                  id="view-cart-button"
-                  class="btn btn-primary"
-                  type="button"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasRightScroll"
-                  aria-controls="offcanvasRightScroll"
-                >
-                  🛒
-                </button>
+            <button
+              id="view-cart-button"
+              class="btn btn-primary"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasRightScroll"
+              aria-controls="offcanvasRightScroll"
+            >
+              🛒
+            </button>
             <ul class="navbar-nav me-0 mb-2 mb-lg-0" id="navigation-list">
 
             </ul>
@@ -99,18 +94,6 @@ function renderNavbar() {
   renderNavbarLinks();
   // Initially load home page content
   homePageContent();
-}
-
-/* Function to fetch navbar links
-This function retrieves the navbar data from the JSON file and
-returns a promise that resolves when the links are fetched */
-function fetchLinks() {
-  return fetchJSON(navbarDataFilename).then((navbarData) => {
-    // Build list of links
-    navbarData.pages.forEach((page) => {
-      navbarItems.push(page);
-    });
-  });
 }
 
 /* Function to render navbar links
