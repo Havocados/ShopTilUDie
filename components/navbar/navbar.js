@@ -151,7 +151,7 @@ function renderRoute(path) {
     pageContentMap[pageId](mainContentTarget);
   } else {
     // Default to home if route not found
-    pageContentMap["home"](mainContentTarget);
+    pageContentMap[""](mainContentTarget);
   }
 }
 
