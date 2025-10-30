@@ -1,5 +1,4 @@
 import { Product } from "../productCard/productCard";
-import { ShoppingCart } from "../shoppingCart/shoppingCart";
 
 class ShoppingCart {
     constructor() {
