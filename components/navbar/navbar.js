@@ -56,7 +56,7 @@ function renderNavbar() {
   // -------------------------- OUTPUT HTML FOR NAVBAR -----------------------------
   navbarTarget.innerHTML = /* html */ `
     <div class="container pt-1 pb-3 my-1 border-bottom">
-        <a  href="index.php"
+        <a  href="index.html"
             class="d-flex align-items-center link-body-emphasis text-decoration-none"
             aria-label="Bootstrap">
             <img src="assets/images/shopTillUDieLogo.png" alt="ShopTilUDie" class="navbar-logo" />

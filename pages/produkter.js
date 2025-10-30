@@ -21,37 +21,36 @@ export function produkterPageContent(
 
   // -------------------------- OUTPUT HTML FOR PRODUCTS PAGE -----------------------------
   target.innerHTML = /* html */ `
-  <div class="input-group mb-3">
-      <select class="custom-select" name="category" id="category-select">
-        <option value="all">All</option>
-        <option value="electronics">Electronics</option>
-        <option value="jewelery">Jewelery</option>
-        <option value="men's clothing">Men's Clothing</option>
-        <option value="women's clothing">Women's Clothing</option>
-      </select>
-    </div>
-
-    <div class="album py-5 bg-body-tertiary">
-      <div class="container">
-        <div
-          id="product-container"
-          class="grid row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 gap-2"
-        >
-            <!-- Product cards will be injected here -->
-        </div>
-
-        <div class="pagination-container"></div>
+    <div class="container">
+      <div class="input-group mb-3 pt-3 justify-content-end">
+        <span class="input-group-text" id="basic-addon1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+            <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"></path>
+          </svg>
+        </span>
+        <select class="custom-select fw-bold" name="category" id="category-select">
+          <option class="fw-bold" value="all">All</option>
+          <option class="fw-bold" value="electronics">Electronics</option>
+          <option class="fw-bold" value="jewelery">Jewelery</option>
+          <option class="fw-bold" value="men's clothing">Men's Clothing</option>
+          <option class="fw-bold" value="women's clothing">Women's Clothing</option>
+        </select>
       </div>
+
+      <div class="bd-example m-0 border-0">
+        <div id="product-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                <!-- Product cards will be injected here -->
+
+        </div>
+      </div>
+    </div>
+        <div class="pagination-container"></div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script type="module" src="../productCard/productCard.js"></script>
 
-    <style lang="">
-      .product-card img {
-        max-width: 100%;
-        height: auto;
-      }
-    </style>
     `;
   // -------------------------- END OUTPUT HTML FOR PRODUCTS PAGE ----------------------------
 

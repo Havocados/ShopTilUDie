@@ -1,7 +1,33 @@
 @import url("http://fonts.googleapis.com/css?family=Onest:400,300,700");
 
 :root {
-  --bs-body-bg: var(--bs-gray-100);
+  --bs-body-bg: #fff;
+  --shop-orange: #F34014;
+}
+
+.shop-orange {
+  color: var(--shop-orange);
+}
+.btn-shop-orange {
+  background-color: var(--shop-orange);
+  border-color: var(--shop-orange);
+  color: white;
+}
+.btn-shop-orange:hover {
+  border-style: outset;
+
+  background-color: transparent;
+  border: 3px solid var(--shop-orange);
+  color: var(--shop-orange);
+  font-weight: 600;
+}
+
+.btn-shop-orange:active {
+  border-style:inset; 
+
+  background-color: transparent;
+  border: 3px solid var(--shop-orange);
+  color: var(--shop-orange);
 }
 
 body {
@@ -23,12 +49,59 @@ nav a {
 nav a:hover {
   text-decoration: underline;
 }
+
 nav a .active {
   font-weight: 700;
 }
 
+/* Utility class to clamp text to 3 lines with ellipsis 
+    from https://developer.mozilla.org/en-US/docs/Web/CSS/line-clamp
+*/
+.clamp-3-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card {
+  height: 26rem;
+}
+
+.card img {
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover .card-title {
+    text-decoration: underline;
+}
+
 .navbar-logo {
   height: 3rem;
+}
+
+/* 
+  styling for category select
+*/
+#category-select {
+  border: 1px solid var(--shop-orange);
+  border-radius: 0 0.25rem 0.25rem 0;
+  background: transparent;
+  color: var(--shop-orange);
+}
+.input-group-text {
+  background: var(--shop-orange);
+}
+.bi {
+  fill: white;
 }
 
 #view-cart-button {

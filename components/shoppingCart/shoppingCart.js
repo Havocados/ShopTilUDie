@@ -123,8 +123,10 @@ function initializeOffcanvasCart() {
                   <!-- Cart items will be injected here -->
               </div>
           </div>
-          <button class="btn btn-primary" id="btn-checkout">Go to Checkout</button>
-          <button class="btn btn-danger" id="btn-clear-cart">Delete All</button>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn btn-primary flex-fill" id="btn-checkout">Go to Checkout</button>
+            <button class="btn btn-danger flex-fill" id="btn-clear-cart">Delete All</button>
+          </div>
         </div>
       </div>
     `;

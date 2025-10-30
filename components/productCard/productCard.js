@@ -111,16 +111,22 @@ class Product {
     createProductCard(product, containerId='product-container') {
         const productContainer = document.getElementById(containerId);
         const productCard = document.createElement('div');
-        productCard.className = 'product-card p-3 border rounded';
-        productCard.innerHTML = `
-            <div class="image-box justify-content-center d-flex mb-3">
-                <img src="${product.image}" alt="${product.title}" style="max-height:200px" />
+        productCard.className = 'col';
+        // -------------------------- OUTPUT HTML FOR PRODUCT CARD -----------------------------
+        productCard.innerHTML = /* html */ `
+        <div class="card">
+            <div class="image-box justify-content-center d-flex my-3">
+                <img class="card-img" src="${product.image}" alt="${product.title}" style="max-height:200px" />
             </div>
-            <h2 class="h4">${product.title}</h2>
-            <p>${product.description}</p>
-            <p>Price: $${product.price}</p>
-            <button class="btn btn-primary add-to-cart" data-id="${product.id}">Add to Cart</button>
+            <div class="card-body d-flex flex-column">
+                <h2 class="h5 fw-bold mb-auto clamp-3-lines">${product.title}</h2>
+                <p class="fw-bold text-end">Price: $${product.price}</p>
+                <button class="btn btn-shop-orange w-100 add-to-cart" data-id="${product.id}">Add to Cart</button>
+          </div>
+        </div>
+          
         `;
+        // -------------------------- END OUTPUT HTML FOR PRODUCT CARD -------------------------  
         productContainer.appendChild(productCard);
     }
 }
