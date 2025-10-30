@@ -33,13 +33,24 @@ class ShoppingCart {
     }
 
     addItem(product) {
-        this.#items.push(product);
+        const existingItem = this.#items.find(item => item.product.id === product.id);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            this.#items.push({ product, quantity: 1 });
+        }
         this.saveToLocalStorage();
     }
 
     removeItem(productId) {
-        this.#items = this.#items.filter(item => item.id !== productId);
-        this.saveToLocalStorage();
+        const itemIndex = this.#items.findIndex(item => item.product.id === productId);
+        if (itemIndex !== -1) {
+            this.#items[itemIndex].quantity -= 1;
+            if (this.#items[itemIndex].quantity <= 0) {
+                this.#items.splice(itemIndex, 1);
+            }
+            this.saveToLocalStorage();
+        }
     }
 
     getItems() {
@@ -66,42 +77,37 @@ class ShoppingCart {
             removeBtn.type = 'button';
             removeBtn.className = 'btn-close position-absolute top-0 end-0 m-2';
             removeBtn.setAttribute('aria-label', 'Remove');
-            removeBtn.addEventListener('click', function (e) {
-                cart.removeItem(item.id);
-                // Remove the item element from the DOM
-                itemElement.remove();
+            removeBtn.addEventListener('click', () => {
+                this.removeItem(item.product.id);
+                this.renderCartItems();
             });
 
             // Add the X button to the item element
             itemElement.appendChild(removeBtn);
 
             // Add the item text
-            const textSpan = document.createElement('span');
-            textSpan.textContent = `${item.title} - $${item.price}`;
-            itemElement.appendChild(textSpan);
+            const cartItem = document.createElement('div');
+            cartItem.innerHTML /* html */= `
+                <h6 class="fw-bold cart-item-title">${item.product.title}</h6>
+                <p class="cart-item-price">$${item.product.price}</p>
+                <p class="cart-item-quantity">Qty: ${item.quantity}</p>`;
+            itemElement.appendChild(cartItem);
 
             cartItemsContainer.appendChild(itemElement);
-            });
-        document.querySelectorAll('#cart-items .btn-close').forEach(button => {
-            button.addEventListener('click', function (e) {
-                const itemId = e.target.closest('.bg-info').querySelector('span').textContent.split(' - ')[0];
-                cart.removeItem(itemId);
-                cart.renderCartItems();
-            });
         });
     }
 
     toJSON() {
-        return this.#items.map(item => item.toJSON());
+        return this.#items.map(item => ({ product: item.product.toJSON(), quantity: item.quantity }));
     }
 
     loadFromLocalStorage() {
         const cartJSON = JSON.parse(localStorage.getItem('shoppingCart')) || [];
-        this.#items = cartJSON.map(item => Product.fromObject(item));
+        this.#items = cartJSON.map(item => ({ product: Product.fromObject(item.product), quantity: item.quantity }));
     }
 
     saveToLocalStorage() {
-        const cartJSON = this.#items.map(item => item.toJSON());
+        const cartJSON = this.toJSON();
         localStorage.setItem('shoppingCart', JSON.stringify(cartJSON));
     }
 }
