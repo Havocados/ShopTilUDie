@@ -1,16 +1,25 @@
+// -----------------------------------------------------------------------------------
+// Import dependencies                                                               |
+// -----------------------------------------------------------------------------------
 import { Product, ProductList } from "../components/productCard/productCard.js";
-//import { ShoppingCart } from "../components/shoppingCart/shoppingCart.js";
+import { cart } from "../components/shoppingCart/shoppingCart.js";
 
+// -----------------------------------------------------------------------------------
+// Define constants                                                                  |
+// -----------------------------------------------------------------------------------
 const productList = new ProductList();
 const localStorageKey = "productList";
 
+// -----------------------------------------------------------------------------------
+// Functions                                                                         |
+// -----------------------------------------------------------------------------------
 export function produkterPageContent(
   target = document.getElementById("main-content")
 ) {
   // Set the document title
   document.title = "Produkter - ShopTilUDie";
 
-  // Swap out the inner HTML of the main content area
+  // -------------------------- OUTPUT HTML FOR PRODUCTS PAGE -----------------------------
   target.innerHTML = /* html */ `
   <div class="input-group mb-3">
       <select class="custom-select" name="category" id="category-select">
@@ -44,6 +53,7 @@ export function produkterPageContent(
       }
     </style>
     `;
+  // -------------------------- END OUTPUT HTML FOR PRODUCTS PAGE ----------------------------
 
   // If there are no products in local storage, fetch from API
   if (!localStorage.getItem(localStorageKey)) {
@@ -71,21 +81,23 @@ export function produkterPageContent(
     console.log("Loaded products from local storage.");
     productList.products.forEach((product) => {
       product.createProductCard(product);
-    })
+    });
     setupCartEventListeners();
   }
 }
 
 // Setup event listeners for Add To Cart buttons in all cards
 function setupCartEventListeners() {
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-      button.addEventListener('click', (e) => {
-          const productId = parseInt(e.target.getAttribute('data-id'));
-          const productToAdd = productList.products.find(prod => prod.id === productId);
-          if (productToAdd) {
-                    cart.addItem(productToAdd);
-                    cart.renderCartItems();
-                }
-            });
-        });
-    }
+  document.querySelectorAll(".add-to-cart").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const productId = parseInt(e.target.getAttribute("data-id"));
+      const productToAdd = productList.products.find(
+        (prod) => prod.id === productId
+      );
+      if (productToAdd) {
+        cart.addItem(productToAdd);
+        cart.renderCartItems();
+      }
+    });
+  });
+}

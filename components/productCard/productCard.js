@@ -1,3 +1,6 @@
+// -----------------------------------------------------------------------------------
+// Class declaration for our products and their methods                               |
+// -----------------------------------------------------------------------------------
 class Product {
     #category
     #description
@@ -136,7 +139,7 @@ class ProductList {
     set products(newProducts) {
         this.#products = newProducts;
     }
-/* 
+
     initElements() {
         this.buttonElements = {
             btnAddToCart: document.querySelectorAll('.add-to-cart')
@@ -154,7 +157,7 @@ class ProductList {
             });
         });
     }
- */
+
     addProduct(product) {
         this.#products.push(product);
     }

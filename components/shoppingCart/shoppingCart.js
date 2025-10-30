@@ -138,4 +138,4 @@ cart.setupEventListeners();
 cart.loadFromLocalStorage();
 cart.renderCartItems();
 
-export { initializeOffcanvasCart };
+export { initializeOffcanvasCart, cart };

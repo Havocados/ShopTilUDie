@@ -50,7 +50,7 @@ renderRoute(window.location.pathname);
 
 
 // -----------------------------------------------------------------------------------
-// Function declarations                                                             |
+// Functions                                                                         |
 // -----------------------------------------------------------------------------------
 function renderNavbar() {
   // -------------------------- OUTPUT HTML FOR NAVBAR -----------------------------
@@ -59,7 +59,7 @@ function renderNavbar() {
         <a  href="index.php"
             class="d-flex align-items-center link-body-emphasis text-decoration-none"
             aria-label="Bootstrap">
-            <span class="fs-4">ShopTilUDie</span>
+            <img src="assets/images/shopTillUDieLogo.png" alt="ShopTilUDie" class="navbar-logo" />
         </a>
         <button class="navbar-toggler"
                 type="button"

@@ -27,6 +27,10 @@ nav a .active {
   font-weight: 700;
 }
 
+.navbar-logo {
+  height: 3rem;
+}
+
 #view-cart-button {
   font-size: 2rem;
   padding: 0.4rem;
