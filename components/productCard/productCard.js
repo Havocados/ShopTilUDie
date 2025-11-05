@@ -110,6 +110,11 @@ class Product {
             );
         });
     }
+    
+    exchangeDollarToSEK(dollarAmount) {
+        const exchangeRate = 9.58; // Exchange rate from USD to SEK as of 2025-11-05
+        return Math.round(dollarAmount * exchangeRate);
+    }
 
     createProductCard(product, containerId='product-container') {
         const productContainer = document.getElementById(containerId);
@@ -123,7 +128,7 @@ class Product {
             </div>
             <div class="card-body d-flex flex-column">
                 <h2 class="h5 fw-bold mb-auto clamp-3-lines">${product.title}</h2>
-                <p class="fw-bold text-end">Price: $${product.price}</p>
+                <p class="fw-bold text-end">Pris: ${product.price} SEK</p>
                 <button class="btn btn-shop-orange w-100 add-to-cart" data-id="${product.id}">Add to Cart</button>
           </div>
         </div>
@@ -176,11 +181,19 @@ class ProductList {
 
     }
 
+    convertPricesUSDToSEK() {
+        this.#products.forEach(product => {
+            product.price = product.exchangeDollarToSEK(product.price);
+        });
+    }
+
     fetchAllProducts(apiURL = 'https://fakestoreapi.com/products') {
         return fetch(apiURL)
             .then(response => response.json())
             .then((data) => {
                 this.#products = data.map(item => Product.fromObject(item));
+                // Convert prices to SEK after fetching
+                this.convertPricesUSDToSEK();
                 return this.#products;
             });
     }

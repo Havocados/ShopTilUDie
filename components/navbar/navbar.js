@@ -57,7 +57,7 @@ renderRoute(window.location.pathname);
 function renderNavbar() {
   // -------------------------- OUTPUT HTML FOR NAVBAR -----------------------------
   navbarTarget.innerHTML = /* html */ `
-    <div class="container pt-1 pb-3 my-1 border-bottom">
+    <div class="container py-2 my-1">
         <a  href="index.html"
             class="d-flex align-items-center link-body-emphasis text-decoration-none"
             aria-label="Bootstrap">

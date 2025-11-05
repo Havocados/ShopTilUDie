@@ -133,7 +133,7 @@ ul li .active {
 }
 
 /*
-Cart button styling
+Shopping cart styling
 */  
 #view-cart-button {
   font-size: 2rem;
@@ -152,6 +152,17 @@ Cart button styling
   right: -2.5rem;
   font-size: 0.75rem;
 }
+
+.increment-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
 .btn-primary {
   background-color: var(--shop-orange);
   border: none;

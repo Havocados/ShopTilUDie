@@ -1,6 +1,5 @@
 import {cart} from '../shoppingCart/shoppingCart.js';
 
-
 export function showConfirmationDialog(title, message) {
     const confirmationModal = document.getElementById('modal-content');
     confirmationModal.innerHTML = /* html */ `

@@ -19,7 +19,9 @@ class ShoppingCart {
         this.buttonElements = {
             // btnShoppingCart: document.getElementById('view-cart-button'),
             btnCheckout: document.getElementById('btn-checkout'),
-            btnClearCart: document.getElementById('btn-toggle-clear-cart-alert')
+            btnClearCart: document.getElementById('btn-toggle-clear-cart-alert'),
+            btnIncrementQuantity: document.querySelectorAll('.button-plus'),
+            btnDecrementQuantity: document.querySelectorAll('.button-minus')
         };
     }
 
@@ -35,6 +37,8 @@ class ShoppingCart {
         this.buttonElements.btnClearCart.addEventListener('click', () => {
             showConfirmationDialog('Are you sure?', 'This will clear out all items in your cart.');
         });
+
+        
     }
 
     addItem(product) {
@@ -113,11 +117,16 @@ class ShoppingCart {
                 <div class="cart-item-image" style="width: 80px; height: 80px; flex-shrink: 0;">
                     <img src="${item.product.image}" alt="${item.product.title}" class="img-fluid" style="max-width: 80px; max-height: 80px;">
                 </div>
-                <div class="cart-item-details mx-4">
+                <div class="cart-item-details mx-4 pr-1 w-100">
                     <h6 class="fw-bold cart-item-title pr-4 clamp-3-lines">${item.product.title}</h6>
+                    <p>Antal:</p>
                     <div class="d-flex justify-content-between">
-                        <p class="cart-item-quantity">Qty: ${item.quantity}</p>
-                        <p class="cart-item-price"><strong>$${item.product.price * item.quantity}</strong></p>
+                        <div class="input-group w-auto justify-content-center align-items-center">
+                            <button id="button-minus" class="border rounded-circle increment-icon mx-1" data-field="quantity">-</button>
+                            <p class="mx-2 my-auto cart-item-quantity"><strong>${item.quantity}</strong></p>
+                            <button value="+" id="button-plus" class="border rounded-circle increment-icon mx-1" data-field="quantity">+</button>
+                        </div>
+                        <p class="h6 cart-item-price">${item.product.price * item.quantity} SEK</p>
                     </div>
                 </div>`;
             itemElement.appendChild(cartItem);
@@ -169,7 +178,7 @@ function initializeOffcanvasCart() {
     document.body.innerHTML += /* html */ `
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightScroll" aria-labelledby="offcanvasRightScrollLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasRightScrollLabel">Your Cart</h5>
+          <h3 class="offcanvas-title" id="offcanvasRightScrollLabel">Din Kundvagn</h3>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -179,18 +188,18 @@ function initializeOffcanvasCart() {
               </div>
           </div>
           <div id="cart-total" class="mt-3">
-              <h5>Total: $<span id="cart-total-price">0.00</span></h5>
+              <h5>Totalt: <span id="cart-total-price">0</span> SEK</h5>
           </div>
           <div class="d-flex gap-2 mt-3">
             <button class="btn btn-shop-orange flex-fill"
                     id="btn-checkout">
-                        Go to Checkout
+                        Gå till kassan
             </button>
             <button class="btn btn-secondary flex-fill"
                     id="btn-toggle-clear-cart-alert"
                     data-bs-toggle="modal"
                     data-bs-target="#alertModal">
-                        Clear cart
+                        Rensa kundvagn
             </button>
           </div>
         </div>
