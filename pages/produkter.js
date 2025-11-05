@@ -59,11 +59,6 @@ export function produkterPageContent(
     productList
       .fetchAllProducts()
       .then(() => {
-        productList.products.forEach((product) => {
-          productList.addProduct(product);
-        });
-      })
-      .then(() => {
         // Save to local storage
         productList.saveToLocalStorage();
         console.log("Fetched products and saved to local storage.");

@@ -40,6 +40,7 @@
 body {
   background-color: var(--bs-body-bg);
   overflow-x: hidden;
+  padding-right: 0 !important;
   margin: 0;
   padding: 0;
   font-family: 'Onest', 'Arial', sans-serif !important;
@@ -153,6 +154,11 @@ Shopping cart styling
   font-size: 0.75rem;
 }
 
+.cart-item-image{
+  max-width: 80px;
+  max-height: 80px;
+}
+
 .increment-icon {
     display: inline-flex;
     align-items: center;
@@ -190,7 +196,7 @@ Shopping cart styling
 /* Hero Section Styles
   for the home page hero section
 */
-#hero-section-home {
+#hero-bg {
   background: radial-gradient(circle at 20% 30%, rgba(235, 77, 77, 1) 0%, rgba(196, 27, 70, 1) 50%, rgba(224, 84, 74, 1) 100%);
 }
 
@@ -204,4 +210,34 @@ Shopping cart styling
   background-color: white;
   color: #000;
   mix-blend-mode: screen;
+}
+
+/* Increment Icon Styles */
+.increment-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    width: 1.5rem;
+    height: 1.5rem;
+} 
+.increment-icon:hover {
+    cursor: pointer;
+    background-color: var(--shop-orange);
+    border-radius: 0.25rem;
+    color:white;
+}
+
+/* Delete Button Styles in Shopping Cart */
+.remove-btn {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 9rem; 
+    cursor: pointer; 
+    border-radius: 0 0.5rem 0.5rem 0; 
+    background-color: rgb(110, 9, 35); 
+    color: white;
 }
