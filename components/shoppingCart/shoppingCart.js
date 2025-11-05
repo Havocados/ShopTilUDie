@@ -13,6 +13,7 @@ class ShoppingCart {
         this.#items = [];
         this.#costTotal = 0.00;
     }
+
     initElements() {
         this.buttonElements = {
             // btnShoppingCart: document.getElementById('view-cart-button'),
@@ -37,14 +38,13 @@ class ShoppingCart {
     addItem(product) {
         const existingItem = this.#items.find(item => item.product.id === product.id);
         if (existingItem) {
-            //console.log('Incrementing quantity for existing item in cart:', product);
             existingItem.quantity += 1;
         } else {
-            //console.log('Adding new item to cart:', product);
             this.#items.push({ product, quantity: 1 });
         }
         this.saveToLocalStorage();
         this.printTotalCost();
+        this.printNumberOfItemsOnBadge();
     }
 
     removeItem(productId) {
@@ -56,6 +56,7 @@ class ShoppingCart {
             }
             this.saveToLocalStorage();
             this.printTotalCost();
+            this.printNumberOfItemsOnBadge();
         }
     }
 
@@ -73,6 +74,7 @@ class ShoppingCart {
         document.getElementById('cart-items').innerHTML = '';
         this.loadFromLocalStorage();
         this.printTotalCost();
+        this.printNumberOfItemsOnBadge();
     }
 
     /*  
@@ -105,7 +107,7 @@ class ShoppingCart {
             // Add the item text
             const cartItem = document.createElement('div');
             cartItem.innerHTML /* html */= `
-                <h6 class="fw-bold cart-item-title">${item.product.title}</h6>
+                <h6 class="fw-bold cart-item-title pr-2">${item.product.title}</h6>
                 <p class="cart-item-price">$${item.product.price}</p>
                 <p class="cart-item-quantity">Qty: ${item.quantity}</p>`;
             itemElement.appendChild(cartItem);
@@ -123,11 +125,16 @@ class ShoppingCart {
 
     printTotalCost (containerId='cart-total-price') {
         const totalCost = this.calculateTotalCost();
-        console.log(`Printing Total Cost: $${totalCost}`);
         const totalContainer = document.getElementById(containerId);
         totalContainer.textContent = totalCost;
     }; 
     // --- End methods to calculate and print total cost ---
+
+    printNumberOfItemsOnBadge (badgeId='cart-item-count-badge') {
+        const totalItems = this.#items.reduce((total, item) => total + item.quantity, 0);
+        const badgeContainer = document.getElementById(badgeId);
+        badgeContainer.textContent = totalItems;
+    ;}
 
     toJSON() {
         return this.#items.map(item => ({ product: item.product.toJSON(), quantity: item.quantity }));

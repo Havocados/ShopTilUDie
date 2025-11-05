@@ -12,6 +12,7 @@ Usage:
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
 import navbarData from "./navbar.json" with { type: "json" };
+import { cart } from "../shoppingCart/shoppingCart.js";
 
 // Import page content functions
 import { homePageContent } from "../../pages/home.js";
@@ -46,9 +47,6 @@ let navbarItems = navbarData.pages;
 renderNavbar();
 addLinkEventListeners();
 
-// Enable navbar clamp on scroll
-navbarPopDownOnScroll();
-
 // Initial render based on current path
 renderRoute(window.location.pathname);
 
@@ -75,17 +73,23 @@ function renderNavbar() {
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-end"
+        <div class="collapse navbar-collapse justify-content-end border-0"
              id="navbarSupportedContent">
             <button
               id="view-cart-button"
-              class="btn btn-primary"
+              class="btn btn-primary px-3"
               type="button"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasRightScroll"
               aria-controls="offcanvasRightScroll"
             >
-              🛒
+              <span class="position-relative">
+                <span class="badge rounded-pill bg-danger" id="cart-item-count-badge">
+                  0
+                  <span class="visually-hidden">items in cart</span>
+                </span>
+              </span>
+              <i class="bi bi-cart" style="font-size: 1.5rem; color: black;"></i>
             </button>
             <ul class="navbar-nav me-0 mb-2 mb-lg-0" id="navigation-list">
 
@@ -96,6 +100,7 @@ function renderNavbar() {
 
   // When the navbar structure is rendered, populate the links
   renderNavbarLinks();
+  cart.printNumberOfItemsOnBadge();
   // Initially load home page content
   homePageContent();
 }
