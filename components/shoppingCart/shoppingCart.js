@@ -8,8 +8,10 @@ import { Product, ProductList } from '../productCard/productCard.js';
 // -----------------------------------------------------------------------------------
 class ShoppingCart {
     #items;
+    #costTotal;
     constructor() {
         this.#items = [];
+        this.#costTotal = 0.00;
     }
     initElements() {
         this.buttonElements = {
@@ -35,11 +37,14 @@ class ShoppingCart {
     addItem(product) {
         const existingItem = this.#items.find(item => item.product.id === product.id);
         if (existingItem) {
+            //console.log('Incrementing quantity for existing item in cart:', product);
             existingItem.quantity += 1;
         } else {
+            //console.log('Adding new item to cart:', product);
             this.#items.push({ product, quantity: 1 });
         }
         this.saveToLocalStorage();
+        this.printTotalCost();
     }
 
     removeItem(productId) {
@@ -50,6 +55,7 @@ class ShoppingCart {
                 this.#items.splice(itemIndex, 1);
             }
             this.saveToLocalStorage();
+            this.printTotalCost();
         }
     }
 
@@ -62,6 +68,7 @@ class ShoppingCart {
         this.saveToLocalStorage();
         document.getElementById('cart-items').innerHTML = '';
         this.loadFromLocalStorage();
+        this.printTotalCost();
     }
 
     renderCartItems(containerId='cart-items') {
@@ -95,21 +102,36 @@ class ShoppingCart {
 
             cartItemsContainer.appendChild(itemElement);
         });
-    }
+    };
+
+    // --- Methods to calculate and print total cost ---
+    calculateTotalCost () {
+        this.#costTotal = this.#items.reduce((total, item) => total + item.product.price * item.quantity, 0);
+        const twoDigitsTotal = parseFloat(this.#costTotal.toFixed(2));
+        return twoDigitsTotal;
+    };
+
+    printTotalCost (containerId='cart-total-price') {
+        const totalCost = this.calculateTotalCost();
+        console.log(`Printing Total Cost: $${totalCost}`);
+        const totalContainer = document.getElementById(containerId);
+        totalContainer.textContent = totalCost;
+    }; 
+    // --- End methods to calculate and print total cost ---
 
     toJSON() {
         return this.#items.map(item => ({ product: item.product.toJSON(), quantity: item.quantity }));
-    }
+    };
 
     loadFromLocalStorage() {
         const cartJSON = JSON.parse(localStorage.getItem('shoppingCart')) || [];
         this.#items = cartJSON.map(item => ({ product: Product.fromObject(item.product), quantity: item.quantity }));
-    }
+    };
 
     saveToLocalStorage() {
         const cartJSON = this.toJSON();
         localStorage.setItem('shoppingCart', JSON.stringify(cartJSON));
-    }
+    };
 }
 
 // -----------------------------------------------------------------------------------
@@ -129,6 +151,9 @@ function initializeOffcanvasCart() {
                   <!-- Cart items will be injected here -->
               </div>
           </div>
+          <div id="cart-total" class="mt-3">
+              <h5>Total: $<span id="cart-total-price">0.00</span></h5>
+          </div>
           <div class="d-flex gap-2 mt-3">
             <button class="btn btn-primary flex-fill" id="btn-checkout">Go to Checkout</button>
             <button class="btn btn-danger flex-fill" id="btn-clear-cart">Delete All</button>
@@ -139,6 +164,7 @@ function initializeOffcanvasCart() {
     // Initialize cart
 }
 
+// On app load - create cart instance, initialize elements, setup event listeners, load from local storage and render items
 const cart = new ShoppingCart();
 initializeOffcanvasCart();
 cart.initElements();
