@@ -2,6 +2,7 @@
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
 import { Product, ProductList } from '../productCard/productCard.js';    
+import { showConfirmationDialog } from '../confirmationDialog/confirmationDialog.js';
 
 // -----------------------------------------------------------------------------------
 // Class declaration for our shopping cart and its methods                           |
@@ -18,7 +19,7 @@ class ShoppingCart {
         this.buttonElements = {
             // btnShoppingCart: document.getElementById('view-cart-button'),
             btnCheckout: document.getElementById('btn-checkout'),
-            btnDeleteAll: document.getElementById('btn-clear-cart')
+            btnClearCart: document.getElementById('btn-toggle-clear-cart-alert')
         };
     }
 
@@ -30,8 +31,9 @@ class ShoppingCart {
             //cart.checkout();
             return
         });
-        this.buttonElements.btnDeleteAll.addEventListener('click', () => {
-            cart.clearCart();
+
+        this.buttonElements.btnClearCart.addEventListener('click', () => {
+            showConfirmationDialog('Are you sure you want to clear the cart?');
         });
     }
 
@@ -89,7 +91,7 @@ class ShoppingCart {
         cartItemsContainer.innerHTML = '';
         cartItems.forEach(item => {
             const itemElement = document.createElement('div');
-            itemElement.className = 'bg-info bg-opacity-25 rounded my-2 p-2 position-relative';
+            itemElement.className = 'cart-item rounded my-2 p-2 pr-4 position-relative';
 
             // Create the X button
             const removeBtn = document.createElement('button');
@@ -104,12 +106,20 @@ class ShoppingCart {
             // Add the X button to the item element
             itemElement.appendChild(removeBtn);
 
-            // Add the item text
+            // Add the cart items
             const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item d-flex align-items-center';
             cartItem.innerHTML /* html */= `
-                <h6 class="fw-bold cart-item-title pr-2">${item.product.title}</h6>
-                <p class="cart-item-price">$${item.product.price}</p>
-                <p class="cart-item-quantity">Qty: ${item.quantity}</p>`;
+                <div class="cart-item-image" style="width: 80px; height: 80px; flex-shrink: 0;">
+                    <img src="${item.product.image}" alt="${item.product.title}" class="img-fluid" style="max-width: 80px; max-height: 80px;">
+                </div>
+                <div class="cart-item-details mx-4">
+                    <h6 class="fw-bold cart-item-title pr-4 clamp-3-lines">${item.product.title}</h6>
+                    <div class="d-flex justify-content-between">
+                        <p class="cart-item-quantity">Qty: ${item.quantity}</p>
+                        <p class="cart-item-price"><strong>$${item.product.price * item.quantity}</strong></p>
+                    </div>
+                </div>`;
             itemElement.appendChild(cartItem);
 
             cartItemsContainer.appendChild(itemElement);
@@ -172,8 +182,16 @@ function initializeOffcanvasCart() {
               <h5>Total: $<span id="cart-total-price">0.00</span></h5>
           </div>
           <div class="d-flex gap-2 mt-3">
-            <button class="btn btn-primary flex-fill" id="btn-checkout">Go to Checkout</button>
-            <button class="btn btn-danger flex-fill" id="btn-clear-cart">Delete All</button>
+            <button class="btn btn-shop-orange flex-fill"
+                    id="btn-checkout">
+                        Go to Checkout
+            </button>
+            <button class="btn btn-secondary flex-fill"
+                    id="btn-toggle-clear-cart-alert"
+                    data-bs-toggle="modal"
+                    data-bs-target="#alertModal">
+                        Clear cart
+            </button>
           </div>
         </div>
       </div>

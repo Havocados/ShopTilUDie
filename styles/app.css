@@ -1,26 +1,25 @@
 @import url("http://fonts.googleapis.com/css?family=Onest:400,300,700");
+@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Onest:wght@100..900&display=swap');
 
+/* CSS Variables */
 :root {
   --bs-body-bg: #fff;
   --shop-orange: #F34014;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-}
-
+/* Shop Orange Color Utility Classes */
 .shop-orange {
   color: var(--shop-orange);
 }
+
 .btn-shop-orange {
   background-color: var(--shop-orange);
   border-color: var(--shop-orange);
   color: white;
 }
+
 .btn-shop-orange:hover {
   border-style: outset;
-
   background-color: transparent;
   border: 3px solid var(--shop-orange);
   color: var(--shop-orange);
@@ -29,12 +28,15 @@ body {
 
 .btn-shop-orange:active {
   border-style:inset; 
-
   background-color: transparent;
   border: 3px solid var(--shop-orange);
   color: var(--shop-orange);
 }
 
+
+/* Global Styles
+  For all pages, top level elements
+ */
 body {
   background-color: var(--bs-body-bg);
   overflow-x: hidden;
@@ -43,6 +45,27 @@ body {
   font-family: 'Onest', 'Arial', sans-serif !important;
   font-weight: 400;
 }
+
+/* Headings styles
+  for h1 to h6 elements
+*/
+h1, h2, h3, h4 {
+  font-family: 'Jaro', 'Arial', sans-serif !important;
+  font-weight: 600;
+}
+
+h2, h3 {
+  color: var(--shop-orange);
+  font-weight: 500;
+}
+
+h4,h5,h6 {
+  font-weight: 700; 
+}
+
+/* Navbar styles
+  for the main navigation and its elements
+ */
 .navbar{
   z-index: 10;
 }
@@ -51,12 +74,13 @@ nav a {
   font-family: 'Onest', 'Arial', sans-serif !important;
 }
 
-nav a:hover {
-  text-decoration: underline;
+ul li .active {
+  font-weight: 700;
+  font-style:normal;
 }
 
-nav a .active {
-  font-weight: 700;
+.navbar-logo {
+  height: 3rem;
 }
 
 /* Utility class to clamp text to 3 lines with ellipsis 
@@ -70,6 +94,9 @@ nav a .active {
   overflow: hidden;
 }
 
+/* Card styles
+  for product cards
+*/
 .card {
   height: 26rem;
 }
@@ -89,12 +116,8 @@ nav a .active {
     text-decoration: underline;
 }
 
-.navbar-logo {
-  height: 3rem;
-}
-
-/* 
-  styling for category select
+/* PLACEHOLDER
+  styling for category select widget
 */
 #category-select {
   border: 1px solid var(--shop-orange);
@@ -115,12 +138,12 @@ Cart button styling
 #view-cart-button {
   font-size: 2rem;
   padding: 0.4rem;
-  border: 1px solid var(--bs-gray-300);
-  background: none;
+  border: none;
+  background-color: transparent;
 }
 
 #view-cart-button:hover {
-  background-color: var(--bs-gray-200);
+  background-color: rgba(243, 64, 20, 0.1);
 }
 
 #cart-item-count-badge {
@@ -128,4 +151,34 @@ Cart button styling
   top: -10px;
   right: -2.5rem;
   font-size: 0.75rem;
+}
+
+.btn-secondary {
+  background-color: var(--bs-body-bg);
+  border: 1px solid var(--shop-orange);
+  color: var(--shop-orange);
+}
+
+.btn-secondary:hover {
+  background-color: var(--shop-orange);
+  color: white;
+}
+
+/* Hero Section Styles
+  for the home page hero section
+*/
+#hero-section-home {
+  background: radial-gradient(circle at 20% 30%, rgba(235, 77, 77, 1) 0%, rgba(196, 27, 70, 1) 50%, rgba(224, 84, 74, 1) 100%);
+}
+
+.btn-hero { 
+  background-color: transparent;
+  border: 3px solid white;
+  color: white;
+}
+
+.btn-hero:hover {
+  background-color: white;
+  color: #000;
+  mix-blend-mode: screen;
 }

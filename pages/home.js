@@ -6,72 +6,18 @@ export function homePageContent(
   
   // Swap out the inner HTML of the main content area
   target.innerHTML = /* html */ `
-    <div id="home-section" class="section row justify-content-center p-4 text-start bg-light">
-
-      <h1 class="display-2 mx-auto" id="home-title">Welcome Home</h1>
-      <div class="container">
-        <div class="inner">
-          <div class="ball"></div>
-          </div>
+    <div class="row align-items-center g-5 py-0 px-5 vh-80" id="hero-section-home">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="assets/images/young-woman-medium-shot-pose.png" class="d-block mx-lg-auto img-fluid max-vh-80" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6 text-white">
+        <h1 class="display-5 fw-bold lh-1 mb-3">Ready to get your cozy on?</h1>
+        <p class="lead">At ShopTilUDie, we have a great selection of winter clothing to keep you warm and stylish in the holiday season. Our collection features cozy sweaters, stylish coats, all made from GORE‑TEX® and natural wool.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button type="button" 
+                  class="btn btn-lg btn-hero px-4 me-md-2">Look through our winter selection</button>
         </div>
       </div>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
-
-      #home-section * {
-        box-sizing: border-box;
-      }
-
-      #home-section {
-        min-height: 100dvh;
-        padding: 24px;
-        color: #222;
-        background-color: #ececec;
-        font-family: "Aboreto", system-ui;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      
-      #home-section .container {
-        #home-title {
-          color: #aee7ff;
-          text-shadow: 0 2px 8px #b1c4e7;
-          font-family: 'Aboreto', system-ui;
-          margin-bottom: 2rem;
-      }
-        width: 360px;
-        aspect-ratio: 1 / 1;
-        padding: 24px;
-        border-radius: calc(24px + 24px);
-        background-image: linear-gradient(45deg, #d3e9e8, #b1c4e7);
-        box-shadow: 2px 2px 18px #0003;
-      }
-
-      #home-section .inner {
-        width: 100%;
-        height: 100%;
-        padding: 8px;
-        border: 1px dashed #fff;
-        border-radius: 24px;
-        background-color: #fff3;
-        container-type: size;
-      }
-
-      #home-section .ball {
-        width: 36px;
-        aspect-ratio: 1 / 1;
-        background-image: radial-gradient(circle at 75% 75%, #c1cae4, #0a2fd3);
-        border-radius: 50%;
-        animation: home-moving 3s linear infinite alternate;
-      }
-
-      @keyframes home-moving {
-        25% { translate: calc(100cqi - 100%) calc(25cqb - 100%); }
-        50% { translate: 0 calc(50cqb - 100%); }
-        75% { translate: calc(100cqi - 100%) calc(75cqb - 100%); }
-        100% { translate: 0 calc(100cqb - 100%); }
-      }
-    </style>
+    </div>  
     `;
 }
