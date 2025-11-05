@@ -45,6 +45,10 @@ let navbarItems = navbarData.pages;
 // Initialize navbar and SPA navigation
 renderNavbar();
 addLinkEventListeners();
+
+// Enable navbar clamp on scroll
+navbarPopDownOnScroll();
+
 // Initial render based on current path
 renderRoute(window.location.pathname);
 

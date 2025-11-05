@@ -5,6 +5,11 @@
   --shop-orange: #F34014;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .shop-orange {
   color: var(--shop-orange);
 }

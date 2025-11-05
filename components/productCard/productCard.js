@@ -9,6 +9,7 @@ class Product {
     #price
     #rating
     #title
+
     constructor(category, description, id, image, price, rating, title) {
         this.#category = category;
         this.#description = description;
@@ -18,6 +19,7 @@ class Product {
         this.#rating = rating;
         this.#title = title;
     }
+
     /* Getters */
     get category() {
         return this.#category;
@@ -40,6 +42,7 @@ class Product {
     get title() {
         return this.#title;
     }
+    
     /* Setters */
     set category(newCategory) {
         this.#category = newCategory;

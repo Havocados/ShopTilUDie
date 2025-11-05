@@ -62,7 +62,11 @@ class ShoppingCart {
     getItems() {
         return this.#items;
     }
-
+    
+    /*  
+    Method to clear the entire cart
+    used when clicking "Delete All" button
+     */
     clearCart() {
         this.#items = [];
         this.saveToLocalStorage();
@@ -71,6 +75,12 @@ class ShoppingCart {
         this.printTotalCost();
     }
 
+    /*  
+        Method to render cart items in the offcanvas
+        used for populating the cart view
+        called when opening the cart and after adding/removing items
+        to update the view, reflecting current cart state
+     */
     renderCartItems(containerId='cart-items') {
         const cartItems = this.getItems();
         const cartItemsContainer = document.getElementById(containerId);
