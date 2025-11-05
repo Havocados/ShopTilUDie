@@ -33,7 +33,7 @@ class ShoppingCart {
         });
 
         this.buttonElements.btnClearCart.addEventListener('click', () => {
-            showConfirmationDialog('Are you sure you want to clear the cart?');
+            showConfirmationDialog('Are you sure?', 'This will clear out all items in your cart.');
         });
     }
 

@@ -112,6 +112,10 @@ function renderNavbarLinks() {
   let linksHTML = "";
   navbarItems.forEach((page) => {
     // Use route-style hrefs and data-spa-link for SPA navigation
+    if (page.id === "home") {
+      return; // Skip adding home link to navbar
+    }
+    
     linksHTML += /* html */ `
         <li class="nav-item mx-2">
             <a class="nav-link link-body-emphasis" href="/${page.id}" data-spa-link id="link-${page.id}">
