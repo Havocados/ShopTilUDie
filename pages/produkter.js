@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------------
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
-import { Product, ProductList } from "../components/productCard/productCard.js";
+import { Product, ProductList } from "../components/ProductCard/ProductCard.js";
 import { cart } from "../components/shoppingCart/shoppingCart.js";
 
 // -----------------------------------------------------------------------------------

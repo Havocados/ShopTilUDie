@@ -11,7 +11,7 @@ Usage:
 // -----------------------------------------------------------------------------------
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
-import navbarData from "./navbar.json" with { type: "json" };
+import navbarData from "./Navbar.json" with { type: "json" };
 import { cart } from "../shoppingCart/shoppingCart.js";
 
 // Import page content functions
