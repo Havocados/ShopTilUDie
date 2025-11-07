@@ -76,25 +76,9 @@ function renderNavbar() {
 
         <div class="collapse navbar-collapse justify-content-end border-0"
              id="navbarSupportedContent">
-            <button
-              id="view-cart-button"
-              class="btn btn-primary px-3"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasRightScroll"
-              aria-controls="offcanvasRightScroll"
-            >
-              <span class="position-relative">
-                <span class="badge rounded-pill bg-danger" id="cart-item-count-badge">
-                  0
-                  <span class="visually-hidden">items in cart</span>
-                </span>
-              </span>
-              <i class="bi bi-cart" style="font-size: 1.5rem; color: black;"></i>
-            </button>
             <ul class="navbar-nav me-0 mb-2 mb-lg-0" id="navigation-list">
               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Produkter
                   </a>
                 <ul class="dropdown-menu" id="product-categories-dropdown">
@@ -103,7 +87,24 @@ function renderNavbar() {
               </li>
                   <!-- Additional navbar items will be populated here -->
             </ul>
-
+            <div class="w-auto d-flex justify-content-center justify-content-lg-end">
+              <button
+                id="view-cart-button"
+                class="btn btn-primary px-3 justify-content-center"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRightScroll"
+                aria-controls="offcanvasRightScroll"
+              >
+                <span class="position-relative">
+                  <span class="badge rounded-pill bg-danger" id="cart-item-count-badge">
+                    0
+                    <span class="visually-hidden">items in cart</span>
+                  </span>
+                </span>
+                <i class="bi bi-cart" style="font-size: 1.5rem; color: black;"></i>
+              </button>
+            </div>
         </div>
     </div>`;
   // -------------------------- END OUTPUT HTML FOR NAVBAR --------------------------

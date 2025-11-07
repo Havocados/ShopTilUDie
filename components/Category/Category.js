@@ -17,8 +17,8 @@ export function renderCategoryLinks(
 ) {
     categories.forEach((category) => {
         target.innerHTML += /* html */ `
-            <li>
-                <a class="dropdown-item text-capitalize" data-category="${category}" href="#">${category}</a>
+            <li class="py-1">
+                <a class="dropdown-item text-capitalize text-center py-1" data-category="${category}" href="#">${category}</a>
             </li>
         `;
     });
