@@ -23,37 +23,38 @@
 }
 
 .btn-primary {
-  background-color: var(--shop-orange);
+  background-color: var(--shop-orange-darkened);
   border: 2px solid hsla(0, 100%, 60%, 0);
+  font-weight: 700;
   color: white;
 }
 .btn-primary:hover {
-  background-color: var(--shop-orange-darkened);
-  border: 2px solid var(--shop-orange-darkened);
+  background-color: var(--shop-orange);
+  border: 2px solid var(--shop-orange);
 }
 .btn-primary:active {
   /* Because we alter a bootstrap button, which use !important 
     we need to also use !important for the override to take effect
   */
-  background-color: var(--shop-orange-darkened) !important;
-  border: 2px solid var(--shop-orange-darkened) !important;
+  background-color: var(--shop-orange) !important;
+  border: 2px solid var(--shop-orange) !important;
   border-style: inset !important;
 }
 
 .btn-secondary {
   background-color: var(--bs-body-bg);
-  border: 2px solid var(--shop-orange);
+  border: 2px solid var(--shop-orange-darkened);
   font-weight: 700;
-  color: var(--shop-orange);
+  color: var(--shop-orange-darkened);
 }
 .btn-secondary:hover {
-  background-color: var(--shop-orange-darkened);
-  border: 2px solid var(--shop-orange-darkened);
+  background-color: var(--shop-orange);
+  border: 2px solid var(--shop-orange);
   color: white;
 }
 .btn-secondary:active {
-  background-color: var(--shop-orange-darkened)!important;
-  border: 2px solid var(--shop-orange-darkened)!important;
+  background-color: var(--shop-orange)!important;
+  border: 2px solid var(--shop-orange)!important;
   border-style: inset !important;
   color: white !important;
 }
@@ -119,6 +120,14 @@ ul li .active {
 /* Utility class to clamp text to 3 lines with ellipsis 
     from https://developer.mozilla.org/en-US/docs/Web/CSS/line-clamp
 */
+.clamp-2-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .clamp-3-lines {
   display: -webkit-box;
   -webkit-line-clamp: 3;

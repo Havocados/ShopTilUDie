@@ -41,8 +41,8 @@ export function renderProductDetails(
         <div class="col-md-6">
         <h1>${product.title}</h1>
         <p>${product.description}</p>
-        <p class="fw-bold">Price: $${product.price}</p>
-        <p class="fw-bold">Rating: ${product.rating.rate} (${product.rating.count} reviews)</p>
+        <p class="fw-bold">Pris: ${product.price} kr</p>
+        <p class="fw-bold">Betyg: ${product.rating.rate} (${product.rating.count} recensioner)</p>
         <button class="btn btn-primary add-to-cart" data-id="${product.id}">Lägg till i Kundvagn</button>
         </div>
     </div>

@@ -127,9 +127,9 @@ class Product {
                 <img class="card-img" src="${product.image}" alt="${product.title}" style="max-height:200px" />
             </div>
             <div class="card-body d-flex flex-column">
-                <h2 class="h5 card-title fw-bold my-auto clamp-3-lines">${product.title}</h2>
-                <p class="h5 text-center py-2">${product.price} kr</p>
-                <button class="btn btn-secondary w-100 go-to-product" data-id="${product.id}">Visa produkt</button>
+                <h2 class="card-title fw-bold my-auto clamp-2-lines">${product.title}</h2>
+                <p class="card-text text-center py-2">${product.price} kr</p>
+                <button class="btn btn-primary w-100 go-to-product" data-id="${product.id}">Visa produkt</button>
           </div>
         </div>
           

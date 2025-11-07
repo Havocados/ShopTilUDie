@@ -22,7 +22,7 @@ export function renderProductsPageContent(
   // -------------------------- OUTPUT HTML FOR PRODUCTS PAGE -----------------------------
   target.innerHTML = /* html */ `
     <style src="/components/Products/Products.css"></style>
-    <div class="">
+    <div class="pb-5">
     <div class="container pt-4">
     <nav class="breadcrumb" aria-label="breadcrumb">
         <ol class="breadcrumb fw-bold text-capitalize my-0">
@@ -75,23 +75,3 @@ export function renderProductsPageContent(
     productList.setupEventListeners();
   }
 }
-
-/*  DEPRECATED: The buttons in cards no longer add to cart directly,
-    instead they navigate to product details page
-
-// Setup event listeners for Add To Cart buttons in all cards
-function setupCartEventListeners() {
-  document.querySelectorAll(".add-to-cart").forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const productId = parseInt(e.target.getAttribute("data-id"));
-      const productToAdd = productList.products.find(
-        (prod) => prod.id === productId
-      );
-      if (productToAdd) {
-        cart.addItem(productToAdd);
-        cart.renderCartItems();
-      }
-    });
-  });
-}
-*/

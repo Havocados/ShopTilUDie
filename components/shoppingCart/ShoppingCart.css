@@ -1,9 +1,11 @@
 .cart-item {
   border-radius: 0.5rem;
 }
-.cart-item-image{
+
+.cart-item-image img {
   max-width: 80px;
-  max-height: 80px;
+  max-height: 1000px;
+  margin:auto;
 }
 
 .increment-icon {
