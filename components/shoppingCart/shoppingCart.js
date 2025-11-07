@@ -2,7 +2,7 @@
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
 import { Product, ProductList } from "../ProductCard/ProductCard.js";
-import { showConfirmationDialog } from "../ConfirmationDialog/ConfirmationDialog.js";
+import { showConfirmationDialog } from "../ConfirmationDialog/ConfirmationDialog.js"
 
 // -----------------------------------------------------------------------------------
 // Class declaration for our shopping cart and its methods                           |

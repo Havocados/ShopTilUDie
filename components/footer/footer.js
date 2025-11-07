@@ -14,7 +14,7 @@ import { fetchJSON } from '../../scripts/main.js';
 // Define constants                                                                  |
 // -----------------------------------------------------------------------------------
 const footerTarget = document.querySelector('footer');
-const navbarDataFilename = './components/navbar/navbar.json';
+const navbarDataFilename = './components/Navbar/Navbar.json';
 
 // -----------------------------------------------------------------------------------
 // Define variables                                                                  |

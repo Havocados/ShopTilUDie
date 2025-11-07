@@ -12,7 +12,7 @@ Usage:
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
 import navbarData from "./Navbar.json" with { type: "json" };
-import { cart } from "../shoppingCart/shoppingCart.js";
+import { cart } from "../ShoppingCart/ShoppingCart.js";
 
 // Import page content functions
 import { homePageContent } from "../../pages/home.js";

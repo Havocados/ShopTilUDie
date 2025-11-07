@@ -2,7 +2,7 @@
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
 import { Product, ProductList } from "../components/ProductCard/ProductCard.js";
-import { cart } from "../components/shoppingCart/shoppingCart.js";
+import { cart } from "../components/ShoppingCart/ShoppingCart.js";
 
 // -----------------------------------------------------------------------------------
 // Define constants                                                                  |
