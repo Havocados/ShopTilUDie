@@ -93,11 +93,4 @@ export function aboutPageContent(
         </style>
       </div>
     `;
-  const productButton = document.getElementById("product-button");
-  let productId = 1;
-  productButton.addEventListener("click", () => {
-    fetchProduct(productId);
-    productId++;
-    productButton.textContent = `Get product ${productId}`;
-  });
 }

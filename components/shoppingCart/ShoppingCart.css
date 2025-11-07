@@ -1,0 +1,35 @@
+/*
+Shopping cart styling
+*/  
+#view-cart-button {
+  font-size: 2rem;
+  padding: 0.4rem;
+  border: none;
+  background-color: transparent;
+}
+
+#view-cart-button:hover {
+  background-color: rgba(243, 64, 20, 0.1);
+}
+
+#cart-item-count-badge {
+  position: absolute;
+  top: -10px;
+  right: -2.5rem;
+  font-size: 0.75rem;
+}
+
+.cart-item-image{
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.increment-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    width: 1.5rem;
+    height: 1.5rem;
+}

@@ -119,6 +119,7 @@ class ShoppingCart {
       const cartItem = document.createElement("div");
       cartItem.className = "cart-item d-flex align-items-center shadow-sm ps-4";
       cartItem.innerHTML /* html */ = `
+      <style src="/components/shoppingCart/shoppingCart.css"></style>
         <div class="cart-item-image">
             <img src="${item.product.image}" alt="${item.product.title}" class="img-fluid">
         </div>

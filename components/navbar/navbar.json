@@ -3,7 +3,7 @@
     { "index": 1, "id":"home", "displayName": "Hem", "script": "home.js" },
     { "index": 2, "id":"produkter", "displayName": "Produkter", "script": "produkter.js" },
     { "index": 3, "id":"tjanster", "displayName": "Tjänster", "script": "tjanster.js" },
-    { "index": 4, "id":"om-oss", "displayName": "Om oss", "script": "omoss.js" },
+    { "index": 4, "id":"about", "displayName": "Om oss", "script": "about.js" },
     { "index": 5, "id":"kontakt", "displayName": "Kontakt", "script": "kontakt.js" }
   ]
 }

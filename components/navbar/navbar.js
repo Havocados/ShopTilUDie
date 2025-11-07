@@ -17,7 +17,7 @@ import { cart } from "../ShoppingCart/ShoppingCart.js";
 // Import page content functions
 import { homePageContent } from "../../pages/home.js";
 import { produkterPageContent } from "../../pages/produkter.js";
-import { aboutPageContent } from "../../pages/om-oss.js";
+import { aboutPageContent } from "../../pages/about.js";
 import { kontaktPageContent } from "../../pages/kontakt.js";
 import { tjansterPageContent } from "../../pages/tjanster.js";
 // -----------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ import { tjansterPageContent } from "../../pages/tjanster.js";
 const pageContentMap = {
   home: homePageContent,
   produkter: produkterPageContent,
-  "om-oss": aboutPageContent,
+  about: aboutPageContent,
   kontakt: kontaktPageContent,
   tjanster: tjansterPageContent,
 };
