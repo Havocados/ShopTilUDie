@@ -1,5 +1,6 @@
 import { Product } from "../Products/Products.js";
 import { cart } from "../ShoppingCart/ShoppingCart.js";
+import { myOffcanvas } from "../ShoppingCart/ShoppingCart.js";
 
 export function renderProductDetails(
   productId,
@@ -58,6 +59,7 @@ export function renderProductDetails(
       if (productToAdd) {
         cart.addItem(productToAdd);
         cart.renderCartItems();
+        myOffcanvas.show();
       }
     });
   });

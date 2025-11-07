@@ -274,4 +274,6 @@ cart.loadFromLocalStorage();
 cart.renderCartItems();
 cart.printTotalCost();
 
-export { initializeOffcanvasCart, cart };
+const myOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRightScroll'));
+
+export { myOffcanvas, cart };

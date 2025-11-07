@@ -46,7 +46,7 @@ export function renderCategoryPageContent(
         <nav class="breadcrumb" aria-label="breadcrumb">
             <ol class="breadcrumb fw-bold text-capitalize my-0">
                 <li class="breadcrumb-item"><a href="#">Products</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#">${category}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">${category}</li>
             </ol>
         </nav>
         <div id="category-product-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">

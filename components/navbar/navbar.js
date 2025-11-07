@@ -95,7 +95,7 @@ function renderNavbar() {
             <ul class="navbar-nav me-0 mb-2 mb-lg-0" id="navigation-list">
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
+                    Produkter
                   </a>
                 <ul class="dropdown-menu" id="product-categories-dropdown">
                   <!-- Category links will be populated here -->
@@ -133,7 +133,7 @@ function renderNavbarLinks() {
     
     linksHTML += /* html */ `
         <li class="nav-item mx-2">
-            <a class="nav-link link-body-emphasis" href="/${page.id}" data-spa-link id="link-${page.id}">
+            <a class="nav-link text-center link-body-emphasis" href="/${page.id}" data-spa-link id="link-${page.id}">
                 ${page.displayName}
             </a>
         </li>`;
@@ -193,9 +193,10 @@ function highlightActivePage(pageId) {
 }
 
 // ---- TODO: Possibly refactor this into somewhere else. ------------
+
 // Navbar collapse functionality for mobile view
 // -------------------------------------------------------------------
-function collapseNavbar() {
+/* function collapseNavbar() {
   const navbarCollapse = document.getElementById("navbarSupportedContent");
   if (navbarCollapse.classList.contains("show")) {
     const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
@@ -210,5 +211,5 @@ document.addEventListener("click", (event) => {
   if (event.target.classList.contains("nav-link")) {
     collapseNavbar();
   }
-});
+}); */
 // -------------------------------------------------------------------
