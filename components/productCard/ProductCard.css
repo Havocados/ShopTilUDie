@@ -1,0 +1,18 @@
+.card {
+  height: 26rem;
+}
+
+.card img {
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.card:hover {
+    transform: scale(1.01);
+    transition: transform 0.1s ease-out;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover .card-title {
+    text-decoration: underline;
+}

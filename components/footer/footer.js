@@ -26,24 +26,41 @@ const navbarDataFilename = './components/Navbar/Navbar.json';
 // -----------------------------------------------------------------------------------
 if (footerTarget.innerHTML.trim() === '') { // Only render if footer is empty
     footerTarget.innerHTML += /* html */`
-    <div class="col mb-3">
-        <a href="index.php" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none"
-            aria-label="Bootstrap">
-            <svg class="bi me-2" width="160" height="128" aria-hidden="true">
-                <use xlink:href="#blge-logo"></use>
-            </svg>
-        </a>
-        <p class="text-body-secondary">© 2025</p>
-    </div>
-    <div class="col mb-3"></div>
-    <div class="col mb-3"></div>
-    <div class="col mb-3"></div>
-    <div class="col mb-3">
-        <h5>Sektion</h5>
+
+    <div class="col mb-4">
+        <h5>Populära Kategorier</h5>
         <ul class="nav flex-column" id="footer-navigation-list">
 
         </ul>
-    </div>`;
+    </div>
+    <div class="col mb-4">
+        <h5>Kundservice</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Leverans</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Köpvillkor</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Presentkort</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Returer</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Vanliga frågor</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Kontakta Kundtjänst</a></li>
+        </ul>
+    </div>
+    <div class="col mb-4">
+        <h5>Om ShopTillUDie</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Vilka är vi?</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Jobba hos oss</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Press</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Hållbarhet</a></li>
+        </ul>
+    </div>
+    <div class="col mb-4">
+            <a href="index.php" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none"
+            aria-label="Bootstrap">
+            <img src="assets/images/shopTillUDieLogo.png" alt="ShopTilUDie Logo" height="32" class="me-2">
+        </a>
+    <p class="text-body-secondary">© 2025</p>
+    </div>
+    `;
 
     // When the footer structure is rendered, populate the links
     renderFooterLinks();

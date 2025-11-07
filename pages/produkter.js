@@ -21,6 +21,7 @@ export function produkterPageContent(
 
   // -------------------------- OUTPUT HTML FOR PRODUCTS PAGE -----------------------------
   target.innerHTML = /* html */ `
+    <style src="/components/ProductCard/ProductCard.css"></style>
     <div class="container pb-4">
       <div class="input-group mb-3 pt-3 justify-content-end">
         <span class="input-group-text" id="basic-addon1">
