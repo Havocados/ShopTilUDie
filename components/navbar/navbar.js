@@ -13,10 +13,11 @@ Usage:
 // -----------------------------------------------------------------------------------
 import navbarData from "./Navbar.json" with { type: "json" };
 import { cart } from "../ShoppingCart/ShoppingCart.js";
+import { renderCategoryLinks, getCategories } from "../Category/Category.js";
 
 // Import page content functions
 import { homePageContent } from "../../pages/home.js";
-import { renderProductsPageContent } from "../../pages/produkter.js";
+//import { renderProductsPageContent } from "../../pages/produkter.js";
 import { aboutPageContent } from "../../pages/about.js";
 import { kontaktPageContent } from "../../pages/kontakt.js";
 import { tjansterPageContent } from "../../pages/tjanster.js";
@@ -27,7 +28,7 @@ import { tjansterPageContent } from "../../pages/tjanster.js";
 // call this when swapping main content
 const pageContentMap = {
   home: homePageContent,
-  produkter: renderProductsPageContent,
+  //produkter: renderProductsPageContent,
   about: aboutPageContent,
   kontakt: kontaktPageContent,
   tjanster: tjansterPageContent,
@@ -92,8 +93,17 @@ function renderNavbar() {
               <i class="bi bi-cart" style="font-size: 1.5rem; color: black;"></i>
             </button>
             <ul class="navbar-nav me-0 mb-2 mb-lg-0" id="navigation-list">
-
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                  </a>
+                <ul class="dropdown-menu" id="product-categories-dropdown">
+                  <!-- Category links will be populated here -->
+                </ul>
+              </li>
+                  <!-- Additional navbar items will be populated here -->
             </ul>
+
         </div>
     </div>`;
   // -------------------------- END OUTPUT HTML FOR NAVBAR --------------------------
@@ -101,6 +111,11 @@ function renderNavbar() {
   // When the navbar structure is rendered, populate the links
   renderNavbarLinks();
   cart.printNumberOfItemsOnBadge();
+
+  // Populate category links
+  getCategories();
+  renderCategoryLinks();
+
   // Initially load home page content
   homePageContent();
 }
@@ -123,7 +138,7 @@ function renderNavbarLinks() {
             </a>
         </li>`;
   });
-  navigationListTarget.innerHTML = linksHTML;
+  navigationListTarget.innerHTML += linksHTML;
 }
 
 /* Function to add event listeners to navbar links

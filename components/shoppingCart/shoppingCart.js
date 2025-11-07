@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------------
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
-import { Product, ProductList } from "../Products/Products.js";
+import { Product, productList } from "../Products/Products.js";
 import { showConfirmationDialog } from "../ConfirmationDialog/ConfirmationDialog.js"
 
 // -----------------------------------------------------------------------------------
@@ -101,11 +101,11 @@ class ShoppingCart {
   }
 
   /*  
-        Method to render cart items in the offcanvas
-        used for populating the cart view
-        called when opening the cart and after adding/removing items
-        to update the view, reflecting current cart state
-     */
+    Method to render cart items in the offcanvas
+    used for populating the cart view
+    called when opening the cart and after adding/removing items
+    to update the view, reflecting current cart state
+  */
   renderCartItems(containerId = "cart-items") {
     const cartItems = this.getItems();
     const cartItemsContainer = document.getElementById(containerId);

@@ -1,5 +1,12 @@
+// -----------------------------------------------------------------------------------
+// Import dependencies                                                               |
+// -----------------------------------------------------------------------------------
 import { renderProductDetails } from "../ProductDetails/ProductDetails.js";
 import { scrollToTop } from "../../scripts/main.js";
+
+// -----------------------------------------------------------------------------------
+// Class declaration for our Product and ProductList, and their methods               |
+// -----------------------------------------------------------------------------------
 
 class Product {
   #category;
@@ -205,9 +212,9 @@ class ProductList {
       });
   }
 
-  saveToLocalStorage() {
+  saveToLocalStorage(name = "productList") {
     const productsJSON = this.#products.map((product) => product.toJSON());
-    localStorage.setItem("productList", JSON.stringify(productsJSON));
+    localStorage.setItem(name, JSON.stringify(productsJSON));
   }
 
   loadFromLocalStorage() {
@@ -220,4 +227,22 @@ class ProductList {
   }
 }
 
-export { Product, ProductList };
+// ------------- Singleton instance of ProductList ----------------
+const productList = new ProductList();
+if (!localStorage.getItem("productList")) {
+  productList
+    .fetchAllProducts()
+    .then(() => {
+      productList.saveToLocalStorage();
+      console.log("Fetched products and saved to local storage.");
+    })
+    .catch((error) => {
+      console.error("Error fetching products:", error);
+    });
+  } else {
+    productList.loadFromLocalStorage();
+    console.log("Loaded products from local storage.");
+  }
+// -----------------------------------------------------------------
+
+export { Product, productList };

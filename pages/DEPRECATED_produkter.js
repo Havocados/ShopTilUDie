@@ -1,15 +1,15 @@
 // -----------------------------------------------------------------------------------
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
-import { Product, ProductList } from "../components/Products/Products.js";
+import { Product, productList } from "../components/Products/Products.js";
 import { cart } from "../components/ShoppingCart/ShoppingCart.js";
 
 // -----------------------------------------------------------------------------------
 // Define constants                                                                  |
 // -----------------------------------------------------------------------------------
-const productList = new ProductList();
 const localStorageKey = "productList";
-
+const filteredProductList = productList.filterByCategory("men's clothing");
+console.log("Filtered products for category 'men's clothing':", filteredProductList);
 // -----------------------------------------------------------------------------------
 // Functions                                                                         |
 // -----------------------------------------------------------------------------------
