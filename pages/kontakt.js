@@ -3,36 +3,49 @@ export function kontaktPageContent(
 ) {
   // Set the document title
   document.title = "Kontakt - ShopTilUDie";
-
+  const helpdeskImage = 'assets/images/helpdesk.png';
   // Swap out the inner HTML of the main content area
   target.innerHTML = /* html */ `
-      <div class="section p-4 text-start bg-light">
-        <div class="container">
-          <div style="background-color: #edebeb; color: #0623c4; font-family: Microsoft Sans Serif, Helvetica, Arial, sans-serif; height: 200px; padding: 20px; margin: auto; position:relative;">
-    <div style="float:left; width: 36%; overflow: hidden;">
-        <div style="
-            background-color: rgba(29, 39, 232, 0.677); opacity: 85%">
-        <img src="https://live.staticflickr.com/65535/51274706071_b858cdd19a_h.jpg"
-             height="200px"
-             width="100%"
-             style="object-fit:cover; transform: scale(1.5);  filter:grayscale(1); mix-blend-mode: screen;">
-    </div></div>
-
-    <div style="writing-mode:vertical-lr; transform: rotate(180deg); float: right; font-size: 12px;">
-        <span style="margin-bottom: 67px;">ADMIT ONE</span>
-        <span style="text-align: right;">13+3+1=17 </span>
-    </div>
-    <div style="float: right; width: 58%; height: 100%; ; letter-spacing: 1px; ">
-        <div style="font-weight: bold; font-size: 25px;">General<br>Admission</div>
-    <div style="font-size: 12px; position: absolute; bottom: 20px">
-        THE DIAMOND LIFE<br>
-        26 MAY 2017 - FOREVER<br>
-        ADULT: 17 CARAT
-    </div>
-    </div>
-
-    </div>
+    <div id="hero-bg-helpdesk">
+    <div class="container">
+      <div class="row align-items-center g-5 py-0" >
+        <div class="col-10 col-sm-8 col-lg-6">
+          <img src="${helpdeskImage}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
         </div>
-      </div>
-    `;
+          <div class="col-lg-6 text-hero">
+            <h1 class="display-5 fw-bold lh-1 mb-3">
+              Har du frågor? Kontakta oss!
+            </h1>
+            <p class="lead">
+              Vi svarar inom 24 timmar, måndag till fredag.
+              Ingen fråga är för liten eller för stor!
+            </p>
+          </div>
+      </div>  
+    </div>
+  </div>
+    <div class="container">
+      <form class="row g-3 py-5">
+        <div class="col-md-3">
+            <label for="form_fname" class="form-label">Förnamn</label>
+            <input type="text" class="form-control" id="form_fname" placeholder="John" required>
+        </div>
+        <div class="col-md-3">
+            <label for="form_lname" class="form-label">Efternamn</label>
+            <input type="text" class="form-control" id="form_lname" placeholder="Blund" required>
+        </div>
+        <div class="col-md-6">
+            <label for="form_email" class="form-label">Epost</label>
+            <input type="email" class="form-control" id="form_email" placeholder="namn@exempel.com" required>
+        </div>
+        <div class="col-md-12 mb-3">
+            <label for="form_message" class="form-label">Meddelande</label>
+            <textarea class="form-control" id="form_message" rows="3" required></textarea>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Skicka meddelande</button>
+        </div>
+    </form>
+  </div>
+  `;
 }

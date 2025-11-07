@@ -1,3 +1,5 @@
+import { populateFAQAccordion } from "../components/FrequentlyAccordion/FrequentlyAccordion.js";
+
 export function aboutPageContent(
   target = document.getElementById("main-content")
 ) {
@@ -8,33 +10,17 @@ export function aboutPageContent(
   target.innerHTML = /* html */ `
       <div class="section p-4 text-start bg-light">
         <div class="container">
-        <section id="om-oss-section">
-          <h1>
-            Hypertext Accordion
-          </h1>
-          <details>
-            <summary>Details</summary>
-            <p>
-              Lorem ipsum dolor sit amet, eu alia suscipit mei. Reque iriure delectus vix id, ex sed forensibus suscipiantur. In eos exerci mollis apeirian, an qui latine alienum. Ad mea libris maluisset, consul assueverit sea ex.
-            </p>
-          </details>
-          <details>
-            <summary>Features</summary>
-            <p>
-              Lorem ipsum dolor sit amet, eu alia suscipit mei. Reque iriure delectus vix id, ex sed forensibus suscipiantur. In eos exerci mollis apeirian, an qui latine alienum. Ad mea libris maluisset, consul assueverit sea ex.
-            </p>
-          </details>
-          <details>
-            <summary>Information
-            </summary>
-            <p>Lorem ipsum dolor sit amet, eu alia suscipit mei. Reque iriure delectus vix id, ex sed forensibus suscipiantur. In eos exerci mollis apeirian, an qui latine alienum. Ad mea libris maluisset, consul assueverit sea ex. </p>
-          </details>
-          <details>
-            <summary>Specifications
-            </summary>
-            <p>Lorem ipsum dolor sit amet, eu alia suscipit mei. Reque iriure delectus vix id, ex sed forensibus suscipiantur. In eos exerci mollis apeirian, an qui latine alienum. Ad mea libris maluisset, consul assueverit sea ex. </p>
-          </details>
-        </section>
+        <div class="section p-4 text-center">
+            <h1 class="my-3 fw-bold shop-orange">Har du funderingar? Vi har svar.</h1>
+            <div class="container py-4 px-sm-3 text-start">
+                <div class="accordion" id="faqAccordion">
+
+                    <!-- FAQ accordion-items skapas och infogas dynamiskt av fetch_questions.js -->
+                    <script type="module" src="scripts/fetch_questions.js"></script>
+
+                </div>
+            </div>
+        </div>
         </div>
         <script type="module" src="/components/productCard/productCard.js"></script>
         <style>
@@ -93,4 +79,5 @@ export function aboutPageContent(
         </style>
       </div>
     `;
+  populateFAQAccordion();
 }

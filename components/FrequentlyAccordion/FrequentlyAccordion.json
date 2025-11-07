@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "question": "Hur kan jag kontakta er för att diskutera en fastighetsaffär?",
+      "answer": "En bostadsaffär börjar ofta med att du <a href='kontakt.php' id='accordion-contact-link' data-bs-toggle='tooltip' data-bs-title='NONE'>kontaktar oss</a> för rådgivning och värdering. När du hittar en bostad du gillar hjälper vi dig genom hela processen – från visning, budgivning och kontraktsskrivning till tillträde och nyckelöverlämning. Vi finns med dig hela vägen för att göra resan trygg och smidig."
+    },
+    {
+      "id": 2,
+      "question": "Vad kostar det att anlita en fastighetsmäklare?",
+      "answer": "Mäklararvodet <strong>kan variera</strong> beroende på objektets värde och omfattning av tjänster. Vanligtvis används en procentsats av försäljningspriset, men fasta arvoden kan också förekomma. Vi förklarar alltid våra avgifter tydligt innan vi tar oss an din affär, så du vet vad som gäller."
+    },
+    {
+      "id": 3,
+      "question": "Kan jag få hjälp med finansiering och lånelöften?",
+      "answer": "<strong>Ja</strong>, vi samarbetar med erfarna finansrådgivare som kan hjälpa dig att hitta rätt lånelösning och guida dig genom processen för att få ett lånelöfte, vilket ofta underlättar vid budgivning. Vi kan även tipsa om hur du kan optimera din privatekonomi inför bostadsköpet."
+    }
+  ]

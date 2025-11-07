@@ -2,6 +2,22 @@
     This file contains custom styles for the navigation bar,
     including the cart button and item count badge.
 */
+.navbar {
+  z-index: 10;
+}
+
+nav a {
+  font-family: "Onest", "Arial", sans-serif !important;
+}
+
+ul li .active {
+  font-weight: 700;
+  font-style: normal;
+}
+
+.navbar-logo {
+  height: 3rem;
+}
 
 #view-cart-button {
   font-size: 2rem;

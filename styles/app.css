@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Onest:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Onest:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 
 /* CSS Variables */
 :root {
@@ -11,10 +11,10 @@
 
 /* Utility classes for font family overrides */
 .font-family-onest {
-  font-family: 'Onest', 'Arial', sans-serif !important;
+  font-family: "Onest", "Arial", sans-serif !important;
 }
 .font-family-jaro {
-  font-family: 'Jaro', 'Arial', sans-serif !important;
+  font-family: "Jaro", "Arial", sans-serif !important;
 }
 
 /* Shop Orange Color Utility Classes */
@@ -53,8 +53,8 @@
   color: white;
 }
 .btn-secondary:active {
-  background-color: var(--shop-orange)!important;
-  border: 2px solid var(--shop-orange)!important;
+  background-color: var(--shop-orange) !important;
+  border: 2px solid var(--shop-orange) !important;
   border-style: inset !important;
   color: white !important;
 }
@@ -65,7 +65,7 @@
 
 html {
   /* prevents layout shifts when scrollbar appears */
-  scrollbar-gutter: stable; 
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -74,7 +74,7 @@ body {
   padding-right: 0 !important;
   margin: 0;
   padding: 0;
-  font-family: 'Onest', 'Arial', sans-serif;
+  font-family: "Onest", "Arial", sans-serif;
   font-weight: 400;
 }
 
@@ -82,39 +82,21 @@ body {
   for h1 to h6 elements
 */
 
-
 h1 {
-  font-family: 'Jaro', 'Arial', sans-serif;
+  font-family: "Jaro", "Arial", sans-serif;
   font-weight: 600;
 }
 
-h2, h3 {
+h2,
+h3 {
   color: var(--shop-orange);
   font-weight: 400;
 }
 
-h4,h5,h6 {
-  font-weight: 700; 
-}
-
-/* Navbar styles
-  for the main navigation and its elements
- */
-.navbar{
-  z-index: 10;
-}
-
-nav a {
-  font-family: 'Onest', 'Arial', sans-serif !important;
-}
-
-ul li .active {
+h4,
+h5,
+h6 {
   font-weight: 700;
-  font-style:normal;
-}
-
-.navbar-logo {
-  height: 3rem;
 }
 
 /* Utility class to clamp text to 3 lines with ellipsis 
@@ -136,35 +118,31 @@ ul li .active {
   overflow: hidden;
 }
 
-/* PLACEHOLDER
-  styling for category select widget
-*/
-#category-select {
-  border: 1px solid var(--shop-orange);
-  border-radius: 0 0.25rem 0.25rem 0;
-  background: transparent;
-  color: var(--shop-orange);
-}
-.input-group-text {
-  background: var(--shop-orange);
-}
-.bi {
-  fill: white;
-}
-
 /* Hero Section Styles
   for the home page hero section
 */
 #hero-bg {
-  background: radial-gradient(circle at 20% 30%, rgba(235, 77, 77, 1) 0%, rgba(196, 27, 70, 1) 50%, rgba(224, 84, 74, 1) 100%);
+  background: radial-gradient(
+    circle at 20% 30%,
+    rgba(235, 77, 77, 1) 0%,
+    rgba(196, 27, 70, 1) 50%,
+    rgba(224, 84, 74, 1) 100%
+  );
+}
+/* Hero Section Helpdesk Styles */
+#hero-bg-helpdesk {
+  background: linear-gradient(45deg, #fffcf8, #a29c99);
 }
 
-.btn-hero { 
+#hero-bg-helpdesk img {
+  max-height:500px;
+}
+
+.btn-hero {
   background-color: transparent;
   border: 3px solid white;
   color: white;
 }
-
 .btn-hero:hover {
   background-color: white;
   color: #000;
@@ -173,23 +151,24 @@ ul li .active {
 
 /* Increment Icon Styles */
 .increment-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    vertical-align: middle;
-    width: 1.5rem;
-    height: 1.5rem;
-} 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+  width: 1.5rem;
+  height: 1.5rem;
+}
 .increment-icon:hover {
-    cursor: pointer;
-    background-color: var(--shop-orange);
-    border-radius: 0.25rem;
-    color:white;
+  cursor: pointer;
+  background-color: var(--shop-orange);
+  border-radius: 0.25rem;
+  color: white;
 }
 
+/* Breadcrumb Styles */
 .breadcrumb {
-  --bs-breadcrumb-divider: '>';
+  --bs-breadcrumb-divider: ">";
 }
 .breadcrumb li a {
   color: #260b94;
