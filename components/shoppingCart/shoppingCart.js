@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------------
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
-import { Product, ProductList } from "../ProductCard/ProductCard.js";
+import { Product, ProductList } from "../Products/Products";
 import { showConfirmationDialog } from "../ConfirmationDialog/ConfirmationDialog.js"
 
 // -----------------------------------------------------------------------------------

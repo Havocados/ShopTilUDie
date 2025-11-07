@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------------
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
-import { Product, ProductList } from "../components/ProductCard/ProductCard.js";
+import { Product, ProductList } from "../components/Products/Products.js";
 import { cart } from "../components/ShoppingCart/ShoppingCart.js";
 
 // -----------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ export function produkterPageContent(
 
   // -------------------------- OUTPUT HTML FOR PRODUCTS PAGE -----------------------------
   target.innerHTML = /* html */ `
-    <style src="/components/ProductCard/ProductCard.css"></style>
+    <style src="/components/Products/Products.css"></style>
     <div class="container pb-4">
       <div class="input-group mb-3 pt-3 justify-content-end">
         <span class="input-group-text" id="basic-addon1">
