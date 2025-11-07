@@ -21,7 +21,7 @@ export function produkterPageContent(
 
   // -------------------------- OUTPUT HTML FOR PRODUCTS PAGE -----------------------------
   target.innerHTML = /* html */ `
-    <div class="container">
+    <div class="container pb-4">
       <div class="input-group mb-3 pt-3 justify-content-end">
         <span class="input-group-text" id="basic-addon1">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
