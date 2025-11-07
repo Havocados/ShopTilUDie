@@ -18,6 +18,12 @@
     height: 1.5rem;
 }
 
+#cart-total h5 {
+    font-family:'Roboto Condensed', 'Arial', sans-serif !important;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--shop-purple-darkened);
+}
 /* Delete Button Style for Shopping Cart */
 .remove-btn {
     display: flex; 

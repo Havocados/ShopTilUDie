@@ -244,8 +244,8 @@ function initializeOffcanvasCart() {
                   <!-- Cart items will be injected here -->
               </div>
           </div>
-          <div id="cart-total" class="mt-3">
-              <h5>Totalt: <span id="cart-total-price">0</span> SEK</h5>
+          <div id="cart-total" class="mt-3 border-top border-bottom py-auto">
+              <h5 class="mb-0 py-2">Totalt: <span id="cart-total-price">0</span> SEK</h5>
           </div>
           <div class="d-flex gap-2 mt-3">
             <button class="btn btn-primary flex-fill"
