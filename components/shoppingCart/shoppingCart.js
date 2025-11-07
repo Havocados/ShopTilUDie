@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------------
 // Import dependencies                                                               |
 // -----------------------------------------------------------------------------------
-import { Product, ProductList } from "../Products/Products";
+import { Product, ProductList } from "../Products/Products.js";
 import { showConfirmationDialog } from "../ConfirmationDialog/ConfirmationDialog.js"
 
 // -----------------------------------------------------------------------------------
@@ -12,7 +12,7 @@ class ShoppingCart {
   #costTotal;
   constructor() {
     this.#items = [];
-    this.#costTotal = 0.0;
+    this.#costTotal = 0;
   }
 
   initElements() {
@@ -235,7 +235,7 @@ function initializeOffcanvasCart() {
   document.body.innerHTML += /* html */ `
       <div class="offcanvas offcanvas-end px-2" tabindex="-1" id="offcanvasRightScroll" aria-labelledby="offcanvasRightScrollLabel">
         <div class="offcanvas-header">
-          <h3 class="offcanvas-title" id="offcanvasRightScrollLabel">Din Kundvagn</h3>
+          <h3 class="offcanvas-title font-family-jaro" id="offcanvasRightScrollLabel">Din Kundvagn</h3>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -248,7 +248,7 @@ function initializeOffcanvasCart() {
               <h5>Totalt: <span id="cart-total-price">0</span> SEK</h5>
           </div>
           <div class="d-flex gap-2 mt-3">
-            <button class="btn btn-shop-orange flex-fill"
+            <button class="btn btn-primary flex-fill"
                     id="btn-checkout">
                         Gå till kassan
             </button>
@@ -265,12 +265,13 @@ function initializeOffcanvasCart() {
   // Initialize cart
 }
 
-// On app load - create cart instance, initialize elements, setup event listeners, load from local storage and render items
+// On this script-file load , run through the necessary steps to setup products and cart
 const cart = new ShoppingCart();
 initializeOffcanvasCart();
 cart.initElements();
 cart.setupEventListeners();
 cart.loadFromLocalStorage();
 cart.renderCartItems();
+cart.printTotalCost();
 
 export { initializeOffcanvasCart, cart };

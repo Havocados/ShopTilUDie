@@ -3,8 +3,17 @@
 
 /* CSS Variables */
 :root {
-  --bs-body-bg: #fff;
+  --bs-body-bg: hsl(0, 0%, 100%);
   --shop-orange: #e7113c;
+  --shop-orange-darkened: #b20c2d;
+}
+
+/* Utility classes for font family overrides */
+.font-family-onest {
+  font-family: 'Onest', 'Arial', sans-serif !important;
+}
+.font-family-jaro {
+  font-family: 'Jaro', 'Arial', sans-serif !important;
 }
 
 /* Shop Orange Color Utility Classes */
@@ -12,27 +21,40 @@
   color: var(--shop-orange);
 }
 
-.btn-shop-orange {
+.btn-primary {
   background-color: var(--shop-orange);
-  border-color: var(--shop-orange);
+  border: 2px solid hsla(0, 100%, 60%, 0);
   color: white;
 }
-
-.btn-shop-orange:hover {
-  border-style: outset;
-  background-color: transparent;
-  border: 3px solid var(--shop-orange);
-  color: var(--shop-orange);
-  font-weight: 600;
+.btn-primary:hover {
+  background-color: var(--shop-orange-darkened);
+  border: 2px solid var(--shop-orange-darkened);
+}
+.btn-primary:active {
+  /* Because we alter a bootstrap button, which use !important 
+    we need to also use !important for the override to take effect
+  */
+  background-color: var(--shop-orange-darkened) !important;
+  border: 2px solid var(--shop-orange-darkened) !important;
+  border-style: inset !important;
 }
 
-.btn-shop-orange:active {
-  border-style:inset; 
-  background-color: transparent;
-  border: 3px solid var(--shop-orange);
+.btn-secondary {
+  background-color: var(--bs-body-bg);
+  border: 2px solid var(--shop-orange);
   color: var(--shop-orange);
 }
-
+.btn-secondary:hover {
+  background-color: var(--shop-orange-darkened);
+  border: 2px solid var(--shop-orange-darkened);
+  color: white;
+}
+.btn-secondary:active {
+  background-color: var(--shop-orange-darkened)!important;
+  border: 2px solid var(--shop-orange-darkened)!important;
+  border-style: inset !important;
+  color: white !important;
+}
 
 /* Global Styles
   For all pages, top level elements
@@ -49,15 +71,17 @@ body {
   padding-right: 0 !important;
   margin: 0;
   padding: 0;
-  font-family: 'Onest', 'Arial', sans-serif !important;
+  font-family: 'Onest', 'Arial', sans-serif;
   font-weight: 400;
 }
 
 /* Headings styles
   for h1 to h6 elements
 */
-h1, h2, h3 {
-  font-family: 'Jaro', 'Arial', sans-serif !important;
+
+
+h1 {
+  font-family: 'Jaro', 'Arial', sans-serif;
   font-weight: 600;
 }
 
@@ -115,30 +139,6 @@ ul li .active {
 }
 .bi {
   fill: white;
-}
-
-.btn-primary {
-  background-color: var(--shop-orange);
-  border: none;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: transparent;
-  border: 3px solid var(--shop-orange);
-  color: var(--shop-orange);
-  font-weight: 600;
-}
-
-.btn-secondary {
-  background-color: var(--bs-body-bg);
-  border: 1px solid var(--shop-orange);
-  color: var(--shop-orange);
-}
-
-.btn-secondary:hover {
-  background-color: var(--shop-orange);
-  color: white;
 }
 
 /* Hero Section Styles

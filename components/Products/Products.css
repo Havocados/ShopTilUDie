@@ -1,5 +1,5 @@
 .card {
-  height: 26rem;
+  height: 28rem;
 }
 
 .card img {
@@ -8,11 +8,11 @@
 }
 
 .card:hover {
-    transform: scale(1.01);
+    /* transform: scale(1.01); */
     transition: transform 0.1s ease-out;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.card:hover .card-title {
+/* .card:hover .card-title {
     text-decoration: underline;
-}
+} */
