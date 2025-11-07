@@ -1,3 +1,6 @@
+.cart-item {
+  border-radius: 0.5rem;
+}
 .cart-item-image{
   max-width: 80px;
   max-height: 80px;
@@ -11,4 +14,22 @@
     vertical-align: middle;
     width: 1.5rem;
     height: 1.5rem;
+}
+
+/* Delete Button Style for Shopping Cart */
+.remove-btn {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 9rem; 
+    cursor: pointer; 
+    border-radius: 0 0.5rem 0.5rem 0; 
+    background-color: #ddd; 
+    color: white;
+}
+
+.remove-btn:hover {
+    background-color: var(--shop-orange);
+    color: white;
 }

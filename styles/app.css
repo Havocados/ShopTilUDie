@@ -1,11 +1,12 @@
-@import url("http://fonts.googleapis.com/css?family=Onest:400,300,700");
-@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Onest:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Onest:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* CSS Variables */
 :root {
   --bs-body-bg: hsl(0, 0%, 100%);
   --shop-orange: #e7113c;
   --shop-orange-darkened: #b20c2d;
+  --shop-purple: #260b94;
+  --shop-purple-darkened: #1e0876;
 }
 
 /* Utility classes for font family overrides */
@@ -42,6 +43,7 @@
 .btn-secondary {
   background-color: var(--bs-body-bg);
   border: 2px solid var(--shop-orange);
+  font-weight: 700;
   color: var(--shop-orange);
 }
 .btn-secondary:hover {
@@ -177,15 +179,9 @@ ul li .active {
     color:white;
 }
 
-/* Delete Button Styles in Shopping Cart */
-.remove-btn {
-    display: flex; 
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 9rem; 
-    cursor: pointer; 
-    border-radius: 0 0.5rem 0.5rem 0; 
-    background-color: rgb(110, 9, 35); 
-    color: white;
+.breadcrumb {
+  --bs-breadcrumb-divider: '>';
+}
+.breadcrumb li a {
+  color: #260b94;
 }

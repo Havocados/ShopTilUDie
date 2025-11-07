@@ -1,7 +1,7 @@
 // Fetch JSON data from a given filename
 // Returns a promise that resolves to the parsed JSON object
 // ((Try not to overuse this function to avoid excessive network requests))
-function fetchJSON(filename) {
+export function fetchJSON(filename) {
   return fetch(filename)
     .then((response) => response.json())
     .then((json) => {
@@ -9,4 +9,6 @@ function fetchJSON(filename) {
     });
 }
 
-export { fetchJSON };
+export function scrollToTop() {
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
+}

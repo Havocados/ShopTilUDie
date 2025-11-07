@@ -16,7 +16,7 @@ import { cart } from "../ShoppingCart/ShoppingCart.js";
 
 // Import page content functions
 import { homePageContent } from "../../pages/home.js";
-import { produkterPageContent } from "../../pages/produkter.js";
+import { renderProductsPageContent } from "../../pages/produkter.js";
 import { aboutPageContent } from "../../pages/about.js";
 import { kontaktPageContent } from "../../pages/kontakt.js";
 import { tjansterPageContent } from "../../pages/tjanster.js";
@@ -27,7 +27,7 @@ import { tjansterPageContent } from "../../pages/tjanster.js";
 // call this when swapping main content
 const pageContentMap = {
   home: homePageContent,
-  produkter: produkterPageContent,
+  produkter: renderProductsPageContent,
   about: aboutPageContent,
   kontakt: kontaktPageContent,
   tjanster: tjansterPageContent,

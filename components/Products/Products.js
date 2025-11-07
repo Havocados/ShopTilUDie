@@ -1,3 +1,6 @@
+import { renderProductDetails } from "../ProductDetails/ProductDetails.js";
+import { scrollToTop } from "../../scripts/main.js";
+
 class Product {
   #category;
   #description;
@@ -120,13 +123,13 @@ class Product {
     // -------------------------- OUTPUT HTML FOR PRODUCT CARD -----------------------------
     productCard.innerHTML = /* html */ `
         <div class="card">
-            <div class="image-box justify-content-center d-flex my-3">
+            <div class="image-box justify-content-center d-flex mx-4 mt-4">
                 <img class="card-img" src="${product.image}" alt="${product.title}" style="max-height:200px" />
             </div>
             <div class="card-body d-flex flex-column">
-                <h2 class="h5 card-title fw-bold mb-auto clamp-3-lines">${product.title}</h2>
-                <p class="fw-bold text-end">Pris: ${product.price} SEK</p>
-                <button class="btn btn-primary w-100 add-to-cart" data-id="${product.id}">Visa produkt</button>
+                <h2 class="h5 card-title fw-bold my-auto clamp-3-lines">${product.title}</h2>
+                <p class="h5 text-center py-2">${product.price} kr</p>
+                <button class="btn btn-secondary w-100 go-to-product" data-id="${product.id}">Visa produkt</button>
           </div>
         </div>
           
@@ -152,19 +155,24 @@ class ProductList {
 
   initElements() {
     this.buttonElements = {
-      btnAddToCart: document.querySelectorAll(".add-to-cart"),
+      btnGoToProduct: document.querySelectorAll(".go-to-product"),
     };
   }
 
   setupEventListeners() {
-    this.buttonElements.btnAddToCart.forEach((button) => {
+    this.initElements();
+    this.buttonElements.btnGoToProduct.forEach((button) => {
       button.addEventListener("click", (e) => {
         const productId = parseInt(e.target.getAttribute("data-id"));
-        const productToAdd = this.#products.find(
+        const product = this.#products.find(
           (prod) => prod.id === productId
         );
-        if (productToAdd) {
-          cart.addItem(productToAdd);
+        if (product) {
+          renderProductDetails(product.id);
+          scrollToTop();
+          //console.log(`Navigated to product details for product ID: ${productId}`);
+        } else {
+          console.error(`Product with ID: ${productId} not found.`);
         }
       });
     });

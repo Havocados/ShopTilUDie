@@ -1,5 +1,5 @@
 import heroData from "../data/splash-hero.json" with { type: "json" };
-import { produkterPageContent } from "./produkter.js";
+import { renderProductsPageContent } from "./produkter.js";
 
 // -----------------------------------------------------------------------------------
 // Function to render the home page content                                          |
@@ -43,6 +43,6 @@ export function homePageContent(
   document
     .getElementById("hero-cta-button")
     .addEventListener("click", () => {
-      produkterPageContent();
+      renderProductsPageContent();
     });
 }
