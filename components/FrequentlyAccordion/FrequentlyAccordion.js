@@ -1,7 +1,5 @@
 import accordionData from './FrequentlyAccordion.json' with { type: "json" };
 
-// Populate FAQ accordion, similar to hero section
-// Dynamically creates accordion items based on each entry in faq.json
 export function populateFAQAccordion() {
     
     const container = document.getElementById("faqAccordion");

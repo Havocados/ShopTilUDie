@@ -26,11 +26,9 @@ class ShoppingCart {
   }
 
   setupEventListeners() {
-    // this.buttonElements.btnShoppingCart.addEventListener('click', () => {
-    //     cart.renderCartItems();
-    // });
     this.buttonElements.btnCheckout.addEventListener("click", () => {
-      //cart.checkout();
+      // NYI
+      // cart.checkout();
       return;
     });
 

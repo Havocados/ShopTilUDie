@@ -56,7 +56,6 @@ export function renderCategoryPageContent(
     `;
 
     // Render product cards for the filtered products
-    const productContainer = document.getElementById("category-product-container");
     filteredProducts.forEach((product) => {
         product.createProductCard(product, "category-product-container");
     });

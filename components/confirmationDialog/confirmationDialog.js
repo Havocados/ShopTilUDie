@@ -17,7 +17,8 @@ export function showConfirmationDialog(title, message) {
         <div class="modal-footer">
             <button type="button"
                     class="btn btn-primary"
-                    data-dismiss="modal">
+                    data-bs-toggle="modal"
+                    data-bs-target="#alertModal">
                 Avbryt (stäng rutan)
             </button>
             <button class="btn btn-secondary flex-fill"
@@ -32,11 +33,11 @@ export function showConfirmationDialog(title, message) {
   modalBody.textContent = message;
 
   const confirmButton = confirmationModal.querySelector("#btn-clear-confirm");
-
   // Add event listener for confirm action
   // clears cart and closes modal
   confirmButton.addEventListener("click", () => {
     cart.clearCart();
     confirmationModal.innerHTML = "";
   });
+
 }
