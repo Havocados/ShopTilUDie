@@ -1,60 +1,35 @@
 /*
-Navbar component script
-
-Description:
     This script fetches the navbar data and renders the navbar links
     dynamically.
-Usage:
-    Used in all pages that include the navbar component.
 */
 
-// -----------------------------------------------------------------------------------
-// Import dependencies                                                               |
-// -----------------------------------------------------------------------------------
+// Import data
 import navbarData from "./Navbar.json" with { type: "json" };
+// Import dependencies
 import { cart } from "../ShoppingCart/ShoppingCart.js";
 import { renderCategoryLinks, getCategories } from "../Category/Category.js";
 
 // Import page content functions
 import { homePageContent } from "../../pages/home.js";
-//import { renderProductsPageContent } from "../../pages/produkter.js";
 import { aboutPageContent } from "../../pages/about.js";
 import { kontaktPageContent } from "../../pages/kontakt.js";
 import { tjansterPageContent } from "../../pages/tjanster.js";
-// -----------------------------------------------------------------------------------
-// Define constants                                                                  |
-// -----------------------------------------------------------------------------------
+
 // PLACEHOLDER IDEA, mapping page IDs to content functions
 // call this when swapping main content
 const pageContentMap = {
   home: homePageContent,
-  //produkter: renderProductsPageContent,
   about: aboutPageContent,
   kontakt: kontaktPageContent,
   tjanster: tjansterPageContent,
 };
 
 const navbarTarget = document.querySelector("nav.navbar");
-
-// -----------------------------------------------------------------------------------
-// Define variables                                                                  |
-// -----------------------------------------------------------------------------------
 let navbarItems = navbarData.pages;
 
-// -----------------------------------------------------------------------------------
-// Call the function to render the navbar                                            |
-// -----------------------------------------------------------------------------------
 // Initialize navbar and SPA navigation
 renderNavbar();
-addLinkEventListeners();
 
-// Initial render based on current path
-renderRoute(window.location.pathname);
-
-
-// -----------------------------------------------------------------------------------
-// Functions                                                                         |
-// -----------------------------------------------------------------------------------
 function renderNavbar() {
   // -------------------------- OUTPUT HTML FOR NAVBAR -----------------------------
   navbarTarget.innerHTML = /* html */ `
@@ -127,56 +102,36 @@ function renderNavbarLinks() {
   const navigationListTarget = document.getElementById("navigation-list");
   let linksHTML = "";
   navbarItems.forEach((page) => {
-    // Use route-style hrefs and data-spa-link for SPA navigation
     if (page.id === "home") {
       return; // Skip adding home link to navbar
     }
-    
     linksHTML += /* html */ `
-        <li class="nav-item mx-2">
-            <a class="nav-link text-center link-body-emphasis" href="/${page.id}" data-spa-link id="link-${page.id}">
-                ${page.displayName}
-            </a>
-        </li>`;
+      <li class="nav-item mx-2">
+        <a class="nav-link text-center link-body-emphasis" href="#" id="link-${page.id}">
+          ${page.displayName}
+        </a>
+      </li>`;
   });
   navigationListTarget.innerHTML += linksHTML;
+
+
 }
 
-/* Function to add event listeners to navbar links
-This function sets up click event listeners on each navbar link
-and swaps the main content out based on the link clicked */
-function addLinkEventListeners() {
-  document.addEventListener("click", function (e) {
-    const link = e.target.closest("a[data-spa-link]");
-    if (link) {
-      e.preventDefault();
-      const path = link.getAttribute("href");
-      history.pushState({ path }, "", path);
-      renderRoute(path);
-      highlightActivePage(link.id.replace("link-", ""));
+// Event listener for using the navbar links for SPA navigation
+const navigationList = document.getElementById("navigation-list");
+navigationList.addEventListener("click", (e) => {
+  // Prevent default link behavior
+  e.preventDefault();
+  const target = e.target;
+  if (target.tagName === "A" && target.id.startsWith("link-")) {
+      const pageId = target.id.replace("link-", ""); // Extract page ID
+      // If we have a mapping for this page, call the corresponding function
+      if (pageContentMap[pageId]) {
+        pageContentMap[pageId]();
+        highlightActivePage(pageId);
+      }
     }
   });
-
-  window.addEventListener("popstate", (event) => {
-    const path = (event.state && event.state.path) || window.location.pathname;
-    renderRoute(path);
-    highlightActivePage(path.replace("/", ""));
-  });
-}
-
-/* SPA route rendering function
-   This function is responsible for rendering the appropriate content
-   based on the current route */
-function renderRoute(path) {
-  const mainContentTarget = document.getElementById("main-content");
-  const pageId = path.replace("/", "");
-  if (pageContentMap[pageId]) {
-    pageContentMap[pageId](mainContentTarget);
-  } else {
-    // Default to home if route not found
-    pageContentMap["home"](mainContentTarget);
-  }
-}
 
 /* Function to highlight the active page link
 This function adds the 'active' class to the currently active link
@@ -192,25 +147,3 @@ function highlightActivePage(pageId) {
     }
   });
 }
-
-// ---- TODO: Possibly refactor this into somewhere else. ------------
-
-// Navbar collapse functionality for mobile view
-// -------------------------------------------------------------------
-/* function collapseNavbar() {
-  const navbarCollapse = document.getElementById("navbarSupportedContent");
-  if (navbarCollapse.classList.contains("show")) {
-    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-      toggle: true,
-    });
-    bsCollapse.hide();
-  }
-}
-
-// Collapse navbar after clicking a link (for mobile view)
-document.addEventListener("click", (event) => {
-  if (event.target.classList.contains("nav-link")) {
-    collapseNavbar();
-  }
-}); */
-// -------------------------------------------------------------------

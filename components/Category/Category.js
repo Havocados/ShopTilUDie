@@ -39,7 +39,7 @@ export function renderCategoryPageContent(
 ) {
     document.title = `ShopTillUDie - ${category}`;
     const filteredProducts = productList.filterByCategory(category);
-
+    // -------------------------- OUTPUT HTML FOR CATEGORY SUBNAV -----------------------
     target.innerHTML = /* html */ `
     <style src="/components/Category/Category.css"></style>
     <div class="container py-4">
@@ -54,6 +54,7 @@ export function renderCategoryPageContent(
         </div>
     </div>
     `;
+    // -------------------------- END OUTPUT HTML FOR CATEGORY SUBNAV -----------------------
 
     // Render product cards for the filtered products
     filteredProducts.forEach((product) => {

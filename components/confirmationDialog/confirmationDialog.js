@@ -2,6 +2,7 @@ import { cart } from "../ShoppingCart/ShoppingCart.js";
 
 export function showConfirmationDialog(title, message) {
   const confirmationModal = document.getElementById("modal-content");
+  // -------------------------- OUTPUT HTML FOR CONFIRMATION MODAL -----------------------
   confirmationModal.innerHTML = /* html */ `
         <div class="modal-header">
             <h5 class="modal-title" id="alertModalLabel">${title}</h5>
@@ -29,6 +30,7 @@ export function showConfirmationDialog(title, message) {
             </button>
         </div>
     `;
+  // -------------------------- END OUTPUT HTML FOR CONFIRMATION MODAL -------------------
   const modalBody = confirmationModal.querySelector(".modal-body");
   modalBody.textContent = message;
 
@@ -39,5 +41,4 @@ export function showConfirmationDialog(title, message) {
     cart.clearCart();
     confirmationModal.innerHTML = "";
   });
-
 }

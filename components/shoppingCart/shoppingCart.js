@@ -1,12 +1,6 @@
-// -----------------------------------------------------------------------------------
-// Import dependencies                                                               |
-// -----------------------------------------------------------------------------------
 import { Product, productList } from "../Products/Products.js";
 import { showConfirmationDialog } from "../ConfirmationDialog/ConfirmationDialog.js"
 
-// -----------------------------------------------------------------------------------
-// Class declaration for our shopping cart and its methods                           |
-// -----------------------------------------------------------------------------------
 class ShoppingCart {
   #items;
   #costTotal;
@@ -150,14 +144,14 @@ class ShoppingCart {
 
       // Add event listener to the remove button
       const removeBtn = cartItem.querySelector(".remove-btn");
+      // Add event listeners for increment and decrement buttons
+      const btnIncrement = cartItem.querySelector("#button-plus");
+      const btnDecrement = cartItem.querySelector("#button-minus");
+
       removeBtn.addEventListener("click", () => {
         this.removeAllOfItem(item.product.id);
         this.renderCartItems();
       });
-
-      // Add event listeners for increment and decrement buttons
-      const btnIncrement = cartItem.querySelector("#button-plus");
-      const btnDecrement = cartItem.querySelector("#button-minus");
 
       btnIncrement.addEventListener("click", () => {
         this.addItem(item.product);
@@ -173,7 +167,6 @@ class ShoppingCart {
       });
 
       itemElement.appendChild(cartItem);
-
       cartItemsContainer.appendChild(itemElement);
     });
   }
@@ -225,10 +218,10 @@ class ShoppingCart {
   }
 }
 
-// -----------------------------------------------------------------------------------
-// Function to initialize the offcanvas cart structure in the DOM                    |
-// we also initialize the product list and setup event listeners
-// -----------------------------------------------------------------------------------
+/* 
+Function to initialize the offcanvas cart structure in the DOM
+we also initialize the product list and setup event listeners
+ */
 function initializeOffcanvasCart() {
   document.body.innerHTML += /* html */ `
       <div class="offcanvas offcanvas-end px-2" tabindex="-1" id="offcanvasRightScroll" aria-labelledby="offcanvasRightScrollLabel">
@@ -272,6 +265,8 @@ cart.loadFromLocalStorage();
 cart.renderCartItems();
 cart.printTotalCost();
 
+// Initialize Bootstrap offcanvas instance
+// Important for controlling the offcanvas via JS when needed
 const myOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRightScroll'));
 
 export { myOffcanvas, cart };

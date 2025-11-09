@@ -1,29 +1,8 @@
-/*
-Footer component script
-
-Description:
-    This file handles the rendering of the footer component.
-*/
-
-// -----------------------------------------------------------------------------------
-// Import dependencies                                                               |
-// -----------------------------------------------------------------------------------
 import { fetchJSON } from '../../scripts/main.js';
 
-// -----------------------------------------------------------------------------------
-// Define constants                                                                  |
-// -----------------------------------------------------------------------------------
 const footerTarget = document.querySelector('footer');
 const navbarDataFilename = './components/Navbar/Navbar.json';
 
-// -----------------------------------------------------------------------------------
-// Define variables                                                                  |
-// -----------------------------------------------------------------------------------
-// NONE
-
-// -----------------------------------------------------------------------------------
-// Render footer HTML                                                                |
-// -----------------------------------------------------------------------------------
 if (footerTarget.innerHTML.trim() === '') { // Only render if footer is empty
     footerTarget.innerHTML += /* html */`
 
@@ -66,11 +45,8 @@ if (footerTarget.innerHTML.trim() === '') { // Only render if footer is empty
     renderFooterLinks();
 } else {
     console.warn('Footer target element is not empty. Footer HTML output skipped to avoid overwriting existing content.');
-}
+};
 
-// -----------------------------------------------------------------------------------
-// Function declarations                                                             |
-// -----------------------------------------------------------------------------------
 function renderFooterLinks(){
     fetchJSON(navbarDataFilename).then(navbarData => {
         const navigationListTarget = document.getElementById('footer-navigation-list');
@@ -84,9 +60,6 @@ function renderFooterLinks(){
                 </a>
             </li>`;
         });
-    // -------------------------- END OUTPUT HTML FOR NAV LINKS -------------------
+        // -------------------------- END OUTPUT HTML FOR NAV LINKS -------------------
     });
-}
-// -----------------------------------------------------------------------------------
-// End of footer HTML output                                                         |
-// -----------------------------------------------------------------------------------
+};

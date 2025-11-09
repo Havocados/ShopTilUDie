@@ -1,5 +1,9 @@
 import accordionData from './FrequentlyAccordion.json' with { type: "json" };
 
+/* 
+Placeholder text brought in from BLGE Estates project
+just to have some code present for prototyping purposes.
+ */
 export function populateFAQAccordion() {
     
     const container = document.getElementById("faqAccordion");
