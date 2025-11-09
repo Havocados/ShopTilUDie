@@ -17,6 +17,7 @@ import { tjansterPageContent } from "../../pages/tjanster.js";
 
 // PLACEHOLDER IDEA, mapping page IDs to content functions
 // call this when swapping main content
+// This can probably be improved with dynamic imports later on
 const pageContentMap = {
   home: homePageContent,
   about: aboutPageContent,
@@ -113,8 +114,6 @@ function renderNavbarLinks() {
       </li>`;
   });
   navigationListTarget.innerHTML += linksHTML;
-
-
 }
 
 // Event listener for using the navbar links for SPA navigation

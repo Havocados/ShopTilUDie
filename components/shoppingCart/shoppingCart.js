@@ -1,4 +1,4 @@
-import { Product, productList } from "../Products/Products.js";
+import { Product } from "../Products/Products.js";
 import { showConfirmationDialog } from "../ConfirmationDialog/ConfirmationDialog.js"
 
 class ShoppingCart {
@@ -110,6 +110,7 @@ class ShoppingCart {
       // Add the cart items
       const cartItem = document.createElement("div");
       cartItem.className = "cart-item d-flex align-items-center shadow-sm ps-4";
+      // -------------------------- OUTPUT HTML FOR CART ITEM -----------------------------
       cartItem.innerHTML /* html */ = `
         <div class="cart-item-image">
             <img src="${item.product.image}" alt="${item.product.title}" class="img-fluid">
@@ -141,10 +142,12 @@ class ShoppingCart {
         <div class="remove-btn">
             ✖
         </div>`;
+      // -------------------------- END OUTPUT HTML FOR CART ITEM -------------------------
 
-      // Add event listener to the remove button
+      // Add event listener to the remove button, increment and decrement buttons
+      // for this current cart item, and bind the actions to the cart methods responsible
+      // for modifying the cart state
       const removeBtn = cartItem.querySelector(".remove-btn");
-      // Add event listeners for increment and decrement buttons
       const btnIncrement = cartItem.querySelector("#button-plus");
       const btnDecrement = cartItem.querySelector("#button-minus");
 
@@ -152,12 +155,10 @@ class ShoppingCart {
         this.removeAllOfItem(item.product.id);
         this.renderCartItems();
       });
-
       btnIncrement.addEventListener("click", () => {
         this.addItem(item.product);
         this.renderCartItems();
       });
-
       btnDecrement.addEventListener("click", () => {
         if (item.quantity <= 1) {
           return;

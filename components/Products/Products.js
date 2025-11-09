@@ -1,12 +1,5 @@
-// -----------------------------------------------------------------------------------
-// Import dependencies                                                               |
-// -----------------------------------------------------------------------------------
 import { renderProductDetails } from "../ProductDetails/ProductDetails.js";
 import { scrollToTop } from "../../scripts/main.js";
-
-// -----------------------------------------------------------------------------------
-// Class declaration for our Product and ProductList, and their methods               |
-// -----------------------------------------------------------------------------------
 
 class Product {
   #category;
@@ -228,6 +221,11 @@ class ProductList {
 }
 
 // ------------- Singleton instance of ProductList ----------------
+// I was having issues with multiple instances and data not persisting
+// also managing localStorage and fetching from API was causing problems
+// when not awaiting properly, so this should help with that.
+// Probably not optimal for larger databases, where I assume you might want
+// to fetch on demand and paginate the imports.
 const productList = new ProductList();
 if (!localStorage.getItem("productList")) {
   productList
