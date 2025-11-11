@@ -1,10 +1,9 @@
 export function tjansterPageContent(
   target = document.getElementById("main-content")
 ) {
-  // Set the document title
   document.title = "Tjänster - ShopTilUDie";
   
-  // Swap out the inner HTML of the main content area
+  // ----------------------------------- START OF INNER HTML FOR SERVICES PAGE  -----------------------------------
   target.innerHTML = /* html */ `
       <div style="min-height:80vh;" class="section p-4 text-start text-hero bg-light">
         <div class="container">
@@ -15,4 +14,5 @@ export function tjansterPageContent(
         </div>
       </div>
     `;
+  // ----------------------------------- END OF INNER HTML FOR SERVICES PAGE  -----------------------------------
 }

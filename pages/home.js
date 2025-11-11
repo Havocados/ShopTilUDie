@@ -1,16 +1,12 @@
-//import { renderCategoryPageContent } from "../components/Category/Category.js";
 import heroData from "../data/splash-hero.json" with { type: "json" };
 import { SelectedCategory } from "../components/Category/Category.js";
-// -----------------------------------------------------------------------------------
-// Function to render the home page content                                          |
-// -----------------------------------------------------------------------------------
+
 export function homePageContent(
   target = document.getElementById("main-content")
 ) {
-  // Set the document title
   document.title = "Home - ShopTilUDie";
 
-  // Swap out the inner HTML of the main content area
+  // ----------------------------------- START OF INNER HTML FOR HOME PAGE  -----------------------------------
   target.innerHTML = /* html */ `
   <div id="hero-bg">
     <div class="container">
@@ -37,7 +33,8 @@ export function homePageContent(
     </div>
   </div>
     `;
-
+  // ----------------------------------- END OF INNER HTML FOR HOME PAGE  -----------------------------------
+  
   // Quick and dirty listener for the CTA to go to products page
   document.getElementById("hero-cta-button").innerText = heroData.cta;
   document

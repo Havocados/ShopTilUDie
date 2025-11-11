@@ -3,10 +3,9 @@ import { populateFAQAccordion } from "../components/FrequentlyAccordion/Frequent
 export function aboutPageContent(
   target = document.getElementById("main-content")
 ) {
-  // Set the document title
   document.title = "Om Oss - ShopTilUDie";
 
-  // Swap out the inner HTML of the main content area
+  // ----------------------------------- START OF INNER HTML FOR ABOUT PAGE  -----------------------------------
   target.innerHTML = /* html */ `
       <div class="section p-4 text-start bg-light">
         <div class="container">
@@ -79,5 +78,6 @@ export function aboutPageContent(
         </style>
       </div>
     `;
+  // ----------------------------------- END OF INNER HTML FOR ABOUT PAGE  -----------------------------------
   populateFAQAccordion();
 }

@@ -1,10 +1,9 @@
 export function kontaktPageContent(
   target = document.getElementById("main-content")
 ) {
-  // Set the document title
   document.title = "Kontakt - ShopTilUDie";
   const helpdeskImage = 'assets/images/helpdesk.png';
-  // Swap out the inner HTML of the main content area
+  // ----------------------------------- START OF INNER HTML FOR CONTACT PAGE  -----------------------------------
   target.innerHTML = /* html */ `
     <div id="hero-bg-helpdesk">
     <div class="container">
@@ -48,4 +47,5 @@ export function kontaktPageContent(
     </form>
   </div>
   `;
+  // ----------------------------------- END OF INNER HTML FOR CONTACT PAGE  -----------------------------------
 }

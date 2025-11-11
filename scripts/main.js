@@ -9,6 +9,8 @@ export function fetchJSON(filename) {
     });
 }
 
+// Scroll the page to the top, used when swapping out content (navigating to a new page)
+// so as to not leave the user in the middle or at the end of the "new page"
 export function scrollToTop() {
   document.body.scrollTop = document.documentElement.scrollTop = 0;
 }
