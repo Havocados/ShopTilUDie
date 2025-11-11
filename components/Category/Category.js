@@ -1,4 +1,5 @@
 import { productList } from "../Products/Products.js";
+import { CollapseNavbar } from "../Navbar/Navbar.js";
 
 const categories = [];
 export const SelectedCategory = new CustomEvent("SelectedCategory", { detail: {  } });
@@ -31,6 +32,7 @@ export function renderCategoryLinks(
             const category = e.target.getAttribute("data-category");
             SelectedCategory.detail.category = category;
             document.dispatchEvent(SelectedCategory);
+            document.dispatchEvent(CollapseNavbar);
         });
     });
 }
