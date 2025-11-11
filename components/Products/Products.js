@@ -171,9 +171,6 @@ class ProductList {
         );
         if (product) {
           SelectedProduct.detail.productId = productId;
-          console.log(
-            `Dispatching SelectedProduct event for product ID: ${productId}`
-          );
           document.dispatchEvent(SelectedProduct);
         } else {
           console.error(`Product with ID: ${productId} not found.`);
@@ -240,14 +237,12 @@ if (!localStorage.getItem("productList")) {
     .fetchAllProducts()
     .then(() => {
       productList.saveToLocalStorage();
-      console.log("Fetched products and saved to local storage.");
     })
     .catch((error) => {
       console.error("Error fetching products:", error);
     });
   } else {
     productList.loadFromLocalStorage();
-    console.log("Loaded products from local storage.");
   }
 // -----------------------------------------------------------------
 

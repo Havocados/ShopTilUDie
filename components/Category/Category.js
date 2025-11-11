@@ -9,7 +9,6 @@ export function getCategories() {
         categories.push(product.category);
     }
     });
-    console.log("Extracted categories:", categories);
     return categories;
 }
 
@@ -31,11 +30,7 @@ export function renderCategoryLinks(
             e.preventDefault();
             const category = e.target.getAttribute("data-category");
             SelectedCategory.detail.category = category;
-            console.log("Dispatching SelectedCategory event for category:", category);
             document.dispatchEvent(SelectedCategory);
-            console.log(`Category link clicked: ${category}`);
-            console.log(SelectedCategory)
-            //renderCategoryPageContent(category);
         });
     });
 }

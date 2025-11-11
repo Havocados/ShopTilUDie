@@ -15,7 +15,6 @@ export function renderProductDetails(
     return;
   }
   const product = productList.findProductById(productId);
-  console.log("Rendering details for product ID:", product);
   if (!product) {
     target.innerHTML = "<p>Product not found.</p>";
     return;
@@ -59,9 +58,6 @@ export function renderProductDetails(
       const productToAdd = productList.findProductById(productId);
       if (productToAdd) {
         AddedToCart.detail.productId = productId;
-        console.log(
-          `Dispatching AddedToCart event for product ID: ${productId}`
-        );
         document.dispatchEvent(AddedToCart);
       }
     });
@@ -70,7 +66,6 @@ export function renderProductDetails(
 
 // Setup listening for category selection event in category component
 document.addEventListener("SelectedProduct", (e) => {
-  console.log("SelectedProduct event received in ProductDetails.js");
   const productId = e.detail.productId;
   renderProductDetails(productId);
   scrollToTop();
@@ -78,7 +73,6 @@ document.addEventListener("SelectedProduct", (e) => {
 
 // Setup listening for AddedToCart event in ShoppingCart component
 document.addEventListener("AddedToCart", (e) => {
-  console.log("AddedToCart event received in ProductDetails.js");
   const productId = e.detail.productId;
   const itemToAdd = productList.findProductById(productId);
   cart.addItem(itemToAdd);
