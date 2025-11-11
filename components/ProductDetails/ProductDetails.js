@@ -1,19 +1,20 @@
-import { Product } from "../Products/Products.js";
+import { scrollToTop } from "../../scripts/main.js";
+import { productList } from "../Products/Products.js";
 import { cart } from "../ShoppingCart/ShoppingCart.js";
 import { myOffcanvas } from "../ShoppingCart/ShoppingCart.js";
+
+
+const AddedToCart = new CustomEvent("AddedToCart", { detail: {  } });
 
 export function renderProductDetails(
   productId,
   target = document.getElementById("main-content")
 ) {
-  const productList = localStorage.getItem("productList");
   if (!productList) {
     target.innerHTML = "<p>Loading product details...</p>";
     return;
   }
-  const parsedProducts = JSON.parse(productList);
-  const products = parsedProducts.map((item) => Product.fromObject(item));
-  const product = products.find((prod) => prod.id === productId);
+  const product = productList.findProductById(productId);
   console.log("Rendering details for product ID:", product);
   if (!product) {
     target.innerHTML = "<p>Product not found.</p>";
@@ -55,12 +56,32 @@ export function renderProductDetails(
   document.querySelectorAll(".add-to-cart").forEach((button) => {
     button.addEventListener("click", (e) => {
       const productId = parseInt(e.target.getAttribute("data-id"));
-      const productToAdd = products.find((prod) => prod.id === productId);
+      const productToAdd = productList.findProductById(productId);
       if (productToAdd) {
-        cart.addItem(productToAdd);
-        cart.renderCartItems();
-        myOffcanvas.show();
+        AddedToCart.detail.productId = productId;
+        console.log(
+          `Dispatching AddedToCart event for product ID: ${productId}`
+        );
+        document.dispatchEvent(AddedToCart);
       }
     });
   });
 }
+
+// Setup listening for category selection event in category component
+document.addEventListener("SelectedProduct", (e) => {
+  console.log("SelectedProduct event received in ProductDetails.js");
+  const productId = e.detail.productId;
+  renderProductDetails(productId);
+  scrollToTop();
+});
+
+// Setup listening for AddedToCart event in ShoppingCart component
+document.addEventListener("AddedToCart", (e) => {
+  console.log("AddedToCart event received in ProductDetails.js");
+  const productId = e.detail.productId;
+  const itemToAdd = productList.findProductById(productId);
+  cart.addItem(itemToAdd);
+  cart.renderCartItems();
+  myOffcanvas.show();
+});

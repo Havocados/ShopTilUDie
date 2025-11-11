@@ -1,6 +1,8 @@
 import { renderProductDetails } from "../ProductDetails/ProductDetails.js";
 import { scrollToTop } from "../../scripts/main.js";
 
+const SelectedProduct = new CustomEvent("SelectedProduct", { detail: {  } });
+
 class Product {
   #category;
   #description;
@@ -168,9 +170,11 @@ class ProductList {
           (prod) => prod.id === productId
         );
         if (product) {
-          renderProductDetails(product.id);
-          scrollToTop();
-          //console.log(`Navigated to product details for product ID: ${productId}`);
+          SelectedProduct.detail.productId = productId;
+          console.log(
+            `Dispatching SelectedProduct event for product ID: ${productId}`
+          );
+          document.dispatchEvent(SelectedProduct);
         } else {
           console.error(`Product with ID: ${productId} not found.`);
         }
@@ -187,7 +191,11 @@ class ProductList {
       (product) => product.id !== productId
     );
   }
-
+  
+  findProductById(productId) {
+    return this.#products.find((product) => product.id === productId);
+  }
+  
   convertPricesUSDToSEK() {
     this.#products.forEach((product) => {
       product.price = product.exchangeDollarToSEK(product.price);
@@ -242,5 +250,45 @@ if (!localStorage.getItem("productList")) {
     console.log("Loaded products from local storage.");
   }
 // -----------------------------------------------------------------
+
+// Function to render category page content
+// triggered when a category is selected from the dropdown via the CustomEvent in Category.js
+export function renderCategoryPageContent(
+    category,
+    target = document.getElementById("main-content")
+) {
+    document.title = `ShopTillUDie - ${category}`;
+    const filteredProducts = productList.filterByCategory(category);
+    // -------------------------- OUTPUT HTML FOR CATEGORY SUBNAV -----------------------
+    target.innerHTML = /* html */ `
+    <style src="/components/Category/Category.css"></style>
+    <div class="container py-4">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+            <ol class="breadcrumb fw-bold text-capitalize my-0">
+                <li class="breadcrumb-item"><a href="#">Products</a></li>
+                <li class="breadcrumb-item active" aria-current="page">${category}</li>
+            </ol>
+        </nav>
+        <div id="category-product-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <!-- Product cards will be injected here -->
+        </div>
+    </div>
+    `;
+    // -------------------------- END OUTPUT HTML FOR CATEGORY SUBNAV -----------------------
+
+    // Render product cards for the filtered products
+    filteredProducts.forEach((product) => {
+        product.createProductCard(product, "category-product-container");
+    });
+
+    productList.setupEventListeners();
+}
+
+// Setup listening for category selection event in category component
+document.addEventListener("SelectedCategory", (e) => {
+  const category = e.detail.category;
+  renderCategoryPageContent(category);
+  scrollToTop();
+});
 
 export { Product, productList };

@@ -1,6 +1,7 @@
 import { productList } from "../Products/Products.js";
 
 const categories = [];
+export const SelectedCategory = new CustomEvent("SelectedCategory", { detail: {  } });
 
 export function getCategories() {
     productList.products.forEach((product) => {
@@ -22,44 +23,19 @@ export function renderCategoryLinks(
             </li>
         `;
     });
+
     // Event listener for category links
+
     target.querySelectorAll("a[data-category]").forEach((link) => {
         link.addEventListener("click", (e) => {
             e.preventDefault();
             const category = e.target.getAttribute("data-category");
+            SelectedCategory.detail.category = category;
+            console.log("Dispatching SelectedCategory event for category:", category);
+            document.dispatchEvent(SelectedCategory);
             console.log(`Category link clicked: ${category}`);
-            renderCategoryPageContent(category);
+            console.log(SelectedCategory)
+            //renderCategoryPageContent(category);
         });
     });
-}
-
-export function renderCategoryPageContent(
-    category,
-    target = document.getElementById("main-content")
-) {
-    document.title = `ShopTillUDie - ${category}`;
-    const filteredProducts = productList.filterByCategory(category);
-    // -------------------------- OUTPUT HTML FOR CATEGORY SUBNAV -----------------------
-    target.innerHTML = /* html */ `
-    <style src="/components/Category/Category.css"></style>
-    <div class="container py-4">
-        <nav class="breadcrumb" aria-label="breadcrumb">
-            <ol class="breadcrumb fw-bold text-capitalize my-0">
-                <li class="breadcrumb-item"><a href="#">Products</a></li>
-                <li class="breadcrumb-item active" aria-current="page">${category}</li>
-            </ol>
-        </nav>
-        <div id="category-product-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <!-- Product cards will be injected here -->
-        </div>
-    </div>
-    `;
-    // -------------------------- END OUTPUT HTML FOR CATEGORY SUBNAV -----------------------
-
-    // Render product cards for the filtered products
-    filteredProducts.forEach((product) => {
-        product.createProductCard(product, "category-product-container");
-    });
-
-    productList.setupEventListeners();
 }

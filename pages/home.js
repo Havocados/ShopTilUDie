@@ -1,7 +1,6 @@
-import { renderCategoryPageContent } from "../components/Category/Category.js";
+//import { renderCategoryPageContent } from "../components/Category/Category.js";
 import heroData from "../data/splash-hero.json" with { type: "json" };
-import { renderProductsPageContent } from "./DEPRECATED_produkter.js";
-
+import { SelectedCategory } from "../components/Category/Category.js";
 // -----------------------------------------------------------------------------------
 // Function to render the home page content                                          |
 // -----------------------------------------------------------------------------------
@@ -44,7 +43,8 @@ export function homePageContent(
   document
     .getElementById("hero-cta-button")
     .addEventListener("click", () => {
-      renderCategoryPageContent("women's clothing");
+      SelectedCategory.detail.category = "women's clothing";
+      document.dispatchEvent(SelectedCategory);
       scrollToTop();
     });
 }
