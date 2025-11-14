@@ -35,7 +35,7 @@ export function homePageContent(
     `;
   // ----------------------------------- END OF INNER HTML FOR HOME PAGE  -----------------------------------
   
-  // Quick and dirty listener for the CTA to go to products page
+  // Quick and dirty listener for the CTA to go to one of the product pages for an arbitrary category (women's clothes)
   document.getElementById("hero-cta-button").innerText = heroData.cta;
   document
     .getElementById("hero-cta-button")

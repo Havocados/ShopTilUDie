@@ -19,19 +19,23 @@ export function renderCategoryLinks(
     categories.forEach((category) => {
         target.innerHTML += /* html */ `
             <li class="py-1">
-                <a class="dropdown-item text-capitalize text-center py-1" data-category="${category}" href="#">${category}</a>
+                <a  class="dropdown-item text-capitalize text-center py-1"
+                    data-category="${category}" href="#">
+                    ${category}
+                </a>
             </li>
         `;
     });
 
     // Event listener for category links
-
     target.querySelectorAll("a[data-category]").forEach((link) => {
         link.addEventListener("click", (e) => {
             e.preventDefault();
             const category = e.target.getAttribute("data-category");
             SelectedCategory.detail.category = category;
             document.dispatchEvent(SelectedCategory);
+            // We need to collapse the navbar after selecting a category (on mobile)
+            // because bootstrap's default behavior breaks in our SPA setup
             document.dispatchEvent(CollapseNavbar);
         });
     });
