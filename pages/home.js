@@ -1,5 +1,6 @@
 import heroData from "../data/splash-hero.json" with { type: "json" };
 import { SelectedCategory } from "../components/Category/Category.js";
+import { scrollToTop } from "../scripts/main.js";
 
 export function homePageContent(
   target = document.getElementById("main-content")
