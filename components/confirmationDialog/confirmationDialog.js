@@ -1,4 +1,5 @@
-import { cart } from "../ShoppingCartTemp/ShoppingCartTemp.js";
+// import { cart } from "../ShoppingCartShoppingCart.js";
+import {cart,myOffcanvas} from "../ShoppingCart/ShoppingCart.js";
 
 export function showConfirmationDialog(title, message) {
   const confirmationModal = document.getElementById("modal-content");

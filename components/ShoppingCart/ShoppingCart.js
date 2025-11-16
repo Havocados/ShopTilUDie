@@ -258,7 +258,7 @@ function initializeOffcanvasCart() {
 }
 
 // On this script-file load , run through the necessary steps to setup products and cart
-const cart = new ShoppingCart();
+export const cart = new ShoppingCart();
 initializeOffcanvasCart();
 cart.initElements();
 cart.setupEventListeners();
@@ -268,6 +268,7 @@ cart.printTotalCost();
 
 // Initialize Bootstrap offcanvas instance
 // Important for controlling the offcanvas via JS when needed
-const myOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRightScroll'));
+export const myOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRightScroll'));
 
-export { myOffcanvas, cart };
+// export { myOffcanvas, cart };
+// export default cart;

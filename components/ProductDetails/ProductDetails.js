@@ -1,6 +1,6 @@
 import { scrollToTop } from "../../scripts/main.js";
 import { productList } from "../Products/Products.js";
-import { cart, myOffcanvas } from "../ShoppingCartTemp/ShoppingCartTemp.js";
+import { cart, myOffcanvas } from "../ShoppingCart/ShoppingCart.js";
 
 
 const AddedToCart = new CustomEvent("AddedToCart", { detail: {  } });
