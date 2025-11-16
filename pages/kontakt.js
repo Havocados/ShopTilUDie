@@ -13,7 +13,7 @@ export function kontaktPageContent(
         </div>
           <div class="col-lg-6 text-hero">
             <h1 class="display-5 fw-bold lh-1 mb-3">
-              Har du frågor? Kontakta oss!
+              Kontakta oss!
             </h1>
             <p class="lead">
               Vi svarar inom 24 timmar, måndag till fredag.

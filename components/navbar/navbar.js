@@ -6,7 +6,6 @@
 // Import data
 import navbarData from "./Navbar.json" with { type: "json" };
 // Import dependencies
-import { cart } from "../ShoppingCart/ShoppingCart.js";
 import { renderCategoryLinks, getCategories } from "../Category/Category.js";
 
 // Import page content functions

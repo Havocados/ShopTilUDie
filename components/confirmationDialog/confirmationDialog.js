@@ -1,4 +1,4 @@
-import { cart } from "../ShoppingCart/ShoppingCart.js";
+import { cart } from "../ShoppingCartTemp/ShoppingCartTemp.js";
 
 export function showConfirmationDialog(title, message) {
   const confirmationModal = document.getElementById("modal-content");

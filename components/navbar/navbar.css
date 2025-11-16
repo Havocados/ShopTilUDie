@@ -18,6 +18,10 @@ ul li .active {
 .navbar-logo {
   height: 3rem;
 }
+.dropdown-item:active {
+  color:#fff !important;
+  background-color: var(--shop-orange) !important;
+}
 
 #view-cart-button {
   font-size: 2rem;
