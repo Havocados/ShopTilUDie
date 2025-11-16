@@ -1,0 +1,8 @@
+{
+  "pages": [
+    { "index": 1, "id":"home", "displayName": "Hem", "script": "home.js" },
+    { "index": 2, "id":"tjanster", "displayName": "Tjänster", "script": "tjanster.js" },
+    { "index": 3, "id":"about", "displayName": "Om oss", "script": "about.js" },
+    { "index": 4, "id":"kontakt", "displayName": "Kontakt", "script": "kontakt.js" }
+  ]
+}
