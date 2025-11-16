@@ -204,7 +204,7 @@ class ShoppingCart {
       quantity: item.quantity,
     }));
   }
-
+  
   loadFromLocalStorage() {
     const cartJSON = JSON.parse(localStorage.getItem("shoppingCart")) || [];
     this.#items = cartJSON.map((item) => ({

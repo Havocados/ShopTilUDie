@@ -2,7 +2,7 @@
     This script fetches the navbar data and renders the navbar links
     dynamically.
 */
-
+import { cart } from "../ShoppingCart/ShoppingCart.js";
 // Import data
 import navbarData from "./Navbar.json" with { type: "json" };
 // Import dependencies
